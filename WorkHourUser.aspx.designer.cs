@@ -112,6 +112,24 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::DevExpress.Web.ASPxEditors.ASPxDropDownEdit DropDownEdit;
         
         /// <summary>
+        /// ASPxLabel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxLabel ASPxLabel1;
+        
+        /// <summary>
+        /// lb_expirydt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxLabel lb_expirydt;
+        
+        /// <summary>
         /// gvd control.
         /// </summary>
         /// <remarks>

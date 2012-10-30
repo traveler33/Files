@@ -26,6 +26,9 @@
             DropDownEdit.SetKeyValue(gv.cpKeyValues[e.visibleIndex]);
             DropDownEdit.SetText(gv.cpEmployeeNames[e.visibleIndex]);
             DropDownEdit.HideDropDown();
+            lb_expirydt.Text = gv.cpKeyValues[e.visibleIndex];
+            
+//           cde_expdt.valueOf
         }
         function EndCallbackHandler(s, e) {
             DropDownEdit.AdjustDropDownWindow();
@@ -144,6 +147,9 @@
             <Panes>
                 <dx:SplitterPane MinSize="100px" MaxSize="680px" Size="280px" ScrollBars="Auto" PaneStyle-Border-BorderColor="Lightgray"
                     PaneStyle-Border-BorderWidth="1px" PaneStyle-Border-BorderStyle="Solid">
+<PaneStyle>
+<Border BorderColor="LightGray" BorderStyle="Solid" BorderWidth="1px"></Border>
+</PaneStyle>
                     <ContentCollection>
                         <dx:SplitterContentControl ID="SCC1" runat="server">
                             <div class="treeToolBar" id="treeToolBar">
@@ -183,12 +189,13 @@
                                                         <Nodes>
                                                             <dx:TreeViewNode Text="Anna Hall">
                                                             </dx:TreeViewNode>
-                                                    <dx:TreeViewNode Text="Mark Wilkins">
-                                                    </dx:TreeViewNode>
-                                                    <dx:TreeViewNode Text="Robert Chen">
+                                                            <dx:TreeViewNode Text="Mark Wilkins">
+                                                            </dx:TreeViewNode>
+                                                            <dx:TreeViewNode Text="Robert Chen">
+                                                            </dx:TreeViewNode>
+                                                        </Nodes>
                                                     </dx:TreeViewNode>
                                                 </Nodes>
-                                                </dx:TreeViewNode> </Nodes>
                                             </dx:TreeViewNode>
                                             <dx:TreeViewNode Text="Beijing">
                                                 <Nodes>
@@ -213,51 +220,68 @@
                 </dx:SplitterPane>
                 <dx:SplitterPane PaneStyle-Border-BorderColor="Lightgray" PaneStyle-Border-BorderWidth="1px"
                     PaneStyle-Border-BorderStyle="Solid">
+<PaneStyle>
+<Border BorderColor="LightGray" BorderStyle="Solid" BorderWidth="1px"></Border>
+</PaneStyle>
                     <ContentCollection>
                         <dx:SplitterContentControl ID="SplitterContentControl2" runat="server">
                             <table border="0" cellpadding="6" cellspacing="6" width="100%">
                                 <tr>
-                                 
-                                         <th  align="left">
-<%--                                            <asp:Button ID="Button16" runat="server" Text="+" CssClass="ShortButton" OnClientClick="DefineFancyBox();return false;" />
+                                    <th align="left">
+                                        <%--                                            <asp:Button ID="Button16" runat="server" Text="+" CssClass="ShortButton" OnClientClick="DefineFancyBox();return false;" />
                                             <asp:Button ID="Button17" runat="server" Text="-" CssClass="ShortButton" />--%>
-<%--                                             <asp:Label ID="SubjectName" runat="server"  Text="Vancouver"></asp:Label>--%>
-                                             <dx:ASPxLabel
-                                                 ID="SubjectName" runat="server" ClientInstanceName="SubjectName" Text="Vancouver" Font-Size="Medium" Font-Bold="True">
-                                             </dx:ASPxLabel>
-                                        </th>
+                                        <%--                                             <asp:Label ID="SubjectName" runat="server"  Text="Vancouver"></asp:Label>--%>
+                                        <dx:ASPxLabel ID="SubjectName" runat="server" ClientInstanceName="SubjectName" Text="Vancouver"
+                                            Font-Size="Medium" Font-Bold="True">
+                                        </dx:ASPxLabel>
+                                    </th>
                                 </tr>
                                 <tr>
-                                
                                     <td>
-                                          <div style="height: 30px; width: 80%; border: none; overflow: auto;">
-                                          <table>
-                                          <tr>
-                                          <th>
-                                          <dx:ASPxLabel
-                                                 ID="dxlb_effdt" runat="server" ClientInstanceName="lb_effectivedate" Text="Effective Date:  " Font-Size="Small" Font-Bold="False">
-                                             </dx:ASPxLabel>
-                                    
-                                    </th>
-                                    <td>
-                                    <div class="resultGridView">
-<dx:ASPxDropDownEdit ID="DropDownEdit" runat="server" ClientInstanceName="DropDownEdit" DisplayFormatString="MMM d, yyyy"
-        Width="170px" AllowUserInput="False" EnableAnimation="False">
-        <DropDownWindowStyle>
-            <Border BorderWidth="0px" />
-        </DropDownWindowStyle>
-        <DropDownWindowTemplate>
-            <dx:ASPxGridView ID="gv" runat="server" AutoGenerateColumns="False" ClientInstanceName="gv" Settings-ShowColumnHeaders="false"
-                Width="500px" DataSourceID="ObjectDataSource1" KeyFieldName="EffectiveDate" OnRowInserting="GridView_RowInserting"
-                OnInitNewRow="GridView_InitNewRow" OnCustomJSProperties="GridView_CustomJSProperties"
-                OnAfterPerformCallback="GridView_AfterPerformCallback">
-                <SettingsBehavior ConfirmDelete="True" EnableRowHotTrack="True" AllowFocusedRow="True" />
-                <Columns>
-                    
-                    <dx:GridViewDataDateColumn FieldName="EffectiveDate" PropertiesDateEdit-DisplayFormatString ="MMM d, yyyy" VisibleIndex="1" >
-                    
-                    </dx:GridViewDataDateColumn>
-                    <dx:GridViewCommandColumn VisibleIndex="3">
+                                        <div style="height: 30px; width: 80%; border: none; overflow: auto;">
+                                            <table>
+                                                <tr>
+                                                    <th>
+                                                        <dx:ASPxLabel ID="dxlb_effdt" runat="server" ClientInstanceName="lb_effectivedate"
+                                                            Text="Effective Date:  " Font-Size="Small" Font-Bold="False">
+                                                        </dx:ASPxLabel>
+                                                    </th>
+                                                    <td style="width: 50%"> 
+                                                        <div class="resultGridView">
+                                                            <dx:ASPxDropDownEdit ID="DropDownEdit" runat="server" ClientInstanceName="DropDownEdit"
+                                                                DisplayFormatString="MMM d, yyyy" Width="170px" AllowUserInput="False" 
+                                                                EnableAnimation="False" OnTextChanged="DropDownEdit_TextChanged">
+                                                                <DropDownWindowStyle>
+                                                                    <Border BorderWidth="0px" />
+                                                                </DropDownWindowStyle>
+                                                                <DropDownWindowTemplate>
+                                                                    <table>
+                                                                        <tr>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                            </td>
+                                                                            <td>
+                                                                                <dx:ASPxButton runat="server" Text="New">
+                                                                                </dx:ASPxButton>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <dx:ASPxGridView ID="gv" runat="server" AutoGenerateColumns="False" ClientInstanceName="gv"
+                                                                        Settings-ShowColumnHeaders="true" Width="500px" DataSourceID="ObjectDataSource1"
+                                                                        KeyFieldName="EffectiveDate" OnRowInserting="GridView_RowInserting" OnInitNewRow="GridView_InitNewRow"
+                                                                        OnCustomJSProperties="GridView_CustomJSProperties" OnAfterPerformCallback="GridView_AfterPerformCallback">
+                                                                        <SettingsBehavior ConfirmDelete="True" EnableRowHotTrack="True" AllowFocusedRow="True" />
+                                                                        <Columns>
+                                                                            <dx:GridViewDataDateColumn FieldName="EffectiveDate" PropertiesDateEdit-DisplayFormatString="MMM d, yyyy"
+                                                                                VisibleIndex="1">
+                                                                            </dx:GridViewDataDateColumn>
+                                                                            <dx:GridViewDataDateColumn FieldName="ExpiryDate" PropertiesDateEdit-DisplayFormatString="MMM d, yyyy"
+                                                                                VisibleIndex="2">
+                                                                            </dx:GridViewDataDateColumn>
+                                                                            <%--                    <dx:GridViewCommandColumn VisibleIndex="3">
                         <EditButton Visible="True">
                         </EditButton>
                         <NewButton Visible="True">
@@ -266,28 +290,38 @@
                         </DeleteButton>
                         <CellStyle Wrap="False">
                         </CellStyle>
-                    </dx:GridViewCommandColumn>
-                </Columns>
-                <ClientSideEvents Init="GridViewInitHandler" RowClick="RowClickHandler" EndCallback="EndCallbackHandler" />
-                <SettingsPager Mode="ShowAllRecords">
-                </SettingsPager>
-                <Settings ShowVerticalScrollBar="True" />
-            </dx:ASPxGridView>
-        </DropDownWindowTemplate>
-        <ClientSideEvents DropDown="DropDownHandler" />
-    </dx:ASPxDropDownEdit>
-    
-                                    </div>
+                    </dx:GridViewCommandColumn>--%>
+                                                                        </Columns>
+                                                                        <ClientSideEvents Init="GridViewInitHandler" RowClick="RowClickHandler" EndCallback="EndCallbackHandler" />
+                                                                        <SettingsPager Mode="ShowAllRecords">
+                                                                        </SettingsPager>
+                                                                        <Settings ShowVerticalScrollBar="True" />
+                                                                    </dx:ASPxGridView>
+                                                                </DropDownWindowTemplate>
+                                                                <ClientSideEvents DropDown="DropDownHandler" />
+                                                            </dx:ASPxDropDownEdit>
+                                                        </div>
+                                                    </td>
+                                                    <th>
+                                                        <dx:ASPxLabel ID="ASPxLabel1" runat="server" ClientInstanceName="lb_expirydate" Text="Expiry Date:  "
+                                                            Font-Size="Small" Font-Bold="False">
+                                                        </dx:ASPxLabel>
+                                                    </th>
+                                                    <td align="right">
+                                                        <dx:ASPxLabel ID="lb_expirydt" runat="server" ClientInstanceName="lb_expirydt" Text="aaa"
+                                                            Font-Size="Small" Font-Bold="False">
+                                                        </dx:ASPxLabel>
+                                                        <%--<dx:ASPxDateEdit ID="de_expdt" runat="server" ClientInstanceName="cde_expdt">
+                                                        </dx:ASPxDateEdit>--%>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </td>
-                                    </tr>
-                                    </table>
-                                    </div>
-                                    </td>
-                                
                                 </tr>
                                 <tr>
-                                    <td style=" height:16px; ">
-                                        <hr style=" width: 100%;  height:1px; background-color: White" />
+                                    <td style="height: 16px;">
+                                        <hr style="width: 100%; height: 1px; background-color: White" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -314,7 +348,8 @@
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
-                                            </div></div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -337,13 +372,16 @@
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
-    
-    </td> 
-    </tr> </table>
-    
-     </dx:SplitterContentControl> </ContentCollection> </dx:SplitterPane>
-    </Panes> </dx:ASPxSplitter> </div> <a id="locationList" href="#Location" title="Location"
-        style="display: none;">Inline</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </dx:SplitterContentControl>
+                    </ContentCollection>
+                </dx:SplitterPane>
+            </Panes>
+        </dx:ASPxSplitter>
+    </div>
+    <a id="locationList" href="#Location" title="Location" style="display: none;">Inline</a>
     <div style="display: none;">
         <div id="Location" style="width: 840px; height: 100%;">
             <uc3:ucLocation ID="ucLocation1" runat="server" />
@@ -362,8 +400,7 @@
         //$('.tab-tc:last').removeClass("tab-tc");
        
     </script>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-        TypeName="Pelesys.Scheduling.Web.Files.EffectiveDt" SelectMethod="GetAllDt" DeleteMethod="Delete"
-        InsertMethod="Insert" UpdateMethod="Update"></asp:ObjectDataSource>
-
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="Pelesys.Scheduling.Web.Files.EffectiveDt"
+        SelectMethod="GetAllDt" DeleteMethod="Delete" InsertMethod="Insert" UpdateMethod="Update">
+    </asp:ObjectDataSource>
 </asp:Content>

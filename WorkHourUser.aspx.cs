@@ -127,13 +127,21 @@ namespace Pelesys.Scheduling.Web.Files
             ASPxGridView grid = (ASPxGridView)DropDownEdit.FindControl("gv");
             object[] employeeNames = new object[grid.VisibleRowCount];
             object[] keyValues = new object[grid.VisibleRowCount];
+            //DateTime dt_eff, dt_exp;
+            //object obj;
+            //Type tp;
             for (int i = 0; i < grid.VisibleRowCount; i++)
             {
+                //obj = grid.GetRowValues(i, "EffectiveDate");
+                //tp = obj.GetType();
+                //dt_eff = grid.GetRowValues(i, "EffectiveDate").GetType();
+                //employeeNames[i] = "Effective Date: " + grid.GetRowValues(i, "EffectiveDate") + "     Expiry Date: " + grid.GetRowValues(i, "ExpiryDate");
                 employeeNames[i] = grid.GetRowValues(i, "EffectiveDate");
                 keyValues[i] = grid.GetRowValues(i, "EffectiveDate");
             }
             e.Properties["cpEmployeeNames"] = employeeNames;
             e.Properties["cpKeyValues"] = keyValues;
+            
         }
 
         protected void GridView_RowInserting(object sender, ASPxDataInsertingEventArgs e)
@@ -160,6 +168,25 @@ namespace Pelesys.Scheduling.Web.Files
             grid.FocusedRowIndex = grid.FindVisibleIndexByKeyValue(lookupKeyValue);
         }
 
+        protected void DropDownEdit_TextChanged(object sender, EventArgs e)
+        {
+            //string dd_text = DropDownEdit.Text;
+            //string s_effdt;
+            ////ADate[] aDate;
+            ////EffectiveDt EffDt = new EffectiveDt();
+            //ICollection al_dt = EffectiveDt.GetAllDt();
+
+            //foreach (ADate adt in al_dt)
+            //{
+            //    s_effdt = adt.EffectiveDate.ToString("MMM d, yyyy");
+            //    if (dd_text.Trim() == s_effdt.Trim())
+            //    {
+            //        lb_expirydt.Text = adt.ExpiryDate.ToString("MMM d, yyyy");
+            //        return;
+            //    }
+            //}
+        }
+
     }
 
     public class EffectiveDt
@@ -170,28 +197,37 @@ namespace Pelesys.Scheduling.Web.Files
 
             ADate aDate1 = new ADate();
             aDate1.EffectiveDate = Convert.ToDateTime("2012-10-16");
+            
             al.Add(aDate1);
             ADate aDate2 = new ADate();
             aDate2.EffectiveDate = Convert.ToDateTime("2011-12-26");
+            aDate2.ExpiryDate = Convert.ToDateTime("2012-10-15");
             al.Add(aDate2);
             ADate aDate3 = new ADate();
             aDate3.EffectiveDate = Convert.ToDateTime("2010-2-23");
+            aDate3.ExpiryDate = Convert.ToDateTime("2011-12-25");
             al.Add(aDate3);
 
             return al;
         }
-
-        public class ADate
-        {
-            private DateTime effectiveDate;
-            public DateTime EffectiveDate
-            {
-                get { return effectiveDate; }
-                set { effectiveDate = value; }
-            }
-
-        }
     }
 
+    public class ADate
+    {
+        private DateTime effectiveDate;
+        public DateTime EffectiveDate
+        {
+            get { return effectiveDate; }
+            set { effectiveDate = value; }
+        }
+
+        private DateTime expiryDate;
+        public DateTime ExpiryDate
+        {
+            get { return expiryDate; }
+            set { expiryDate = value; }
+        }
+
+    }
 
 }
