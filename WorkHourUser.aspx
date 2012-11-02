@@ -53,8 +53,13 @@
         function OnTreeViewNodeClick(s, e) {
             var node = ASPxTreeView1.GetSelectedNode();
             var pnode = node.parent;
-            if (pnode.name == "RootNode" || pnode.name == "UsersNode") {
-                SubjectName.Text = node.text;
+            if (node.name == "RootNode") {
+            }
+            else if (node.name == "UsersNode") {
+                SubjectName.SetText(pnode.text);
+            }
+            else if (pnode.name == "RootNode" || pnode.name == "UsersNode") {
+                SubjectName.SetText(node.text);
             }
         }
         function AddNewNode() {
@@ -164,7 +169,7 @@
                                 <%--                <img id="loading" class="loading" src="../images/loading.gif" alt="loading..." />--%>
                             </div>
                             <dx:ASPxTreeView ID="ASPxTreeView1" runat="server" ClientInstanceName="ASPxTreeView1"
-                                AllowSelectNode="true" EnableClientSideAPI="True" EnableCallBacks="True" OnNodeClick="tv1_NodeClick">
+                                AllowSelectNode="true" EnableClientSideAPI="True" EnableCallBacks="True">
                                 <ClientSideEvents NodeClick="OnTreeViewNodeClick" />
                                 <Nodes>
                                     <dx:TreeViewNode Name="RootNode" Text="Location">

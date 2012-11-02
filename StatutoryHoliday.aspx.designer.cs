@@ -13,6 +13,24 @@ namespace Pelesys.Scheduling.Web.Files {
     public partial class StatutoryHoliday {
         
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
         /// Button16 control.
         /// </summary>
         /// <remarks>
@@ -92,6 +110,15 @@ namespace Pelesys.Scheduling.Web.Files {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bntCancel;
+        
+        /// <summary>
+        /// ucLocation1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Pelesys.Scheduling.Web.Controls.Location ucLocation1;
         
         /// <summary>
         /// Master property.

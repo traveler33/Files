@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="StatutoryHoliday.aspx.cs" Inherits="Pelesys.Scheduling.Web.Files.StatutoryHoliday" %>
+<%@ Register Src="../Control/ucLocation.ascx" TagName="ucLocation" TagPrefix="uc3" %>
 
 <%@ MasterType VirtualPath="~/Master/Main.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
@@ -14,6 +15,38 @@
             height: 37px;
         }
     </style>
+    <script type="text/javascript">
+    function LocDefineFancyBox() {
+
+            $("#locationList").fancybox({
+                'autoScale': false,
+                'autoDimensions': false,
+                'width': 1200,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'padding': 6,
+
+                'titlePosition': 'inside',
+                'titleShow': true,
+
+                "onUpdate": function () {
+                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
+                },
+                "afterLoad": function () {
+                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
+                }
+            });
+
+            LocreadyFancy();
+        }
+        function LocreadyFancy() {
+
+            $('#locationList').trigger('click');
+            // window.setTimeout('parent.$.fancybox.close();', 2500);
+
+
+        }
+        </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div style="visibility: visible; margin: 4px; padding: 4px; border-top: 6px solid white;
@@ -24,12 +57,15 @@
                     <div style=" padding: 8px; background-color:White; border: 1px solid lightgray;">
                     <table>
                         <tr>
-                            <th align="left">
-                                Location:
-                            </th>
-                            <td class="style2">
+<%--                            <th align="left">
+                     
+                            </th>--%>
+                            <td class="style2" colspan="2">
+                                                            Location:   <asp:Button ID="Button1" runat="server" Text="+" CssClass="ShortButton" OnClientClick="LocDefineFancyBox();return false;" />
+                                            <asp:Button ID="Button2" runat="server" Text="-" CssClass="ShortButton" />
+  
                             </td>
-                            <th style="width: 800px">
+                            <td style="width: 800px">
                                 <%--           &nbsp;Add or remove statutory holidays for year: --%>
                                 <table>
                                     <tr>
@@ -52,7 +88,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </th>
+                            </td>
                         </tr>
                         <tr style="height: 340px">
                             <th valign="top" align="left">
@@ -134,6 +170,12 @@
                 </td>
             </tr>
         </table>
+    </div>
+    <a id="locationList" href="#Location" title="Location" style="display: none;">Inline</a>
+    <div style="display: none;">
+        <div id="Location" style="width: 840px; height: 100%;">
+            <uc3:ucLocation ID="ucLocation1" runat="server" />
+        </div>
     </div>
     <script type="text/javascript">
 
