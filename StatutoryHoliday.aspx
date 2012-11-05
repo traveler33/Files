@@ -15,7 +15,21 @@
             height: 37px;
         }
     </style>
+    <script src="../js/exp_parser.js" type="text/javascript"></script>
+    <script src="../js/jquery.splitter/splitter-16.js" type="text/javascript"></script>
+    <script src="../js/jquery.jsTree/jquery.jstree.js" type="text/javascript"></script>
+    <script src="../js/zeroclipboard/ZeroClipboard.js" type="text/javascript"></script>
+    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../lib/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../js/jquery.treeview.js" type="text/javascript"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+
+            // first example
+            $("#ddbrowser").treeview();
+
+
+        });
     function LocDefineFancyBox() {
 
             $("#locationList").fancybox({
@@ -42,6 +56,36 @@
         function LocreadyFancy() {
 
             $('#locationList').trigger('click');
+            // window.setTimeout('parent.$.fancybox.close();', 2500);
+
+
+        }
+        function CopyYearFancy() {
+
+            $("#locationList").fancybox({
+                'autoScale': false,
+                'autoDimensions': false,
+                'width': 1200,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'padding': 6,
+
+                'titlePosition': 'inside',
+                'titleShow': true,
+
+                "onUpdate": function () {
+                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
+                },
+                "afterLoad": function () {
+                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
+                }
+            });
+
+            CopyYearFancyTrigger();
+        }
+        function CopyYearFancyTrigger() {
+
+            $('#CopyYearBox').trigger('click');
             // window.setTimeout('parent.$.fancybox.close();', 2500);
 
 
@@ -78,6 +122,7 @@
                                                 Font-Size="Small" />
                                         </td>
                                         <td>
+                                        <asp:Button ID="Button3" runat="server" Text="+" CssClass="ShortButton" OnClientClick="CopyYearFancy();return false;" />
                                         </td>
                                         <td>
                                             <dx:ASPxDropDownEdit ID="YearDL" runat="server" Width="80px" Theme="Office2010Blue"
@@ -175,6 +220,12 @@
     <div style="display: none;">
         <div id="Location" style="width: 840px; height: 100%;">
             <uc3:ucLocation ID="ucLocation1" runat="server" />
+        </div>
+    </div>
+    <a id="CopyYearBox" href="#CopyYear" title="Copy Statutory Holiday" style="display: none;">Inline</a>
+    <div style="display: none;">
+        <div id="CopyYear" style="width: 840px; height: 100%;">
+            Do your want to
         </div>
     </div>
     <script type="text/javascript">
