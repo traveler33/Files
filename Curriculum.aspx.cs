@@ -51,12 +51,12 @@ namespace Pelesys.Scheduling.Web.Files
             gvweek1.DataSource = oList;
            gvweek1.DataBind();
 
-            lstCourseList.Items.Add(new ListItem("Airbus 722 - Intrduction"));
-            lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 1"));
-            lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 2"));
-            lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 3"));
-            lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 4"));
-            lstCourseList.Items.Add(new ListItem("Airbus 722- Summary"));
+            //lstCourseList.Items.Add(new ListItem("Airbus 722 - Intrduction"));
+            //lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 1"));
+            //lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 2"));
+            //lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 3"));
+            //lstCourseList.Items.Add(new ListItem("Airbus 722 - Security Training 4"));
+            //lstCourseList.Items.Add(new ListItem("Airbus 722- Summary"));
 
 
             ASPxScheduler1.Start = DateTime.Today;

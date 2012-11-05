@@ -283,8 +283,7 @@
                                         </div>
                                     </ContentTemplate>
                                 </asp:TabPanel>
-                                <asp:TabPanel ID="TabPanel2" HeaderText="New 
-                                Tab 1" runat="server" ToolTip="Form Design: Design your own resource type">
+                                <asp:TabPanel ID="NewTab1" HeaderText="NewTab1" runat="server" ToolTip="Form Design: Design your own resource type">
                                     <ContentTemplate>
                                     </ContentTemplate>
                                 </asp:TabPanel>

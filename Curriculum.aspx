@@ -4,9 +4,12 @@
 <%@ MasterType VirtualPath="~/Master/Main.Master" %>
 <%@ Register Src="../Control/ucResourceSelection.ascx" TagName="ucResourceSelection"
     TagPrefix="uc2" %>
+<%@ Register Src="../Control/ucSelectCourse.ascx" TagName="uccourseSelection" TagPrefix="uc3" %>
+<%@ Register Assembly="DevExpress.Web.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web.ASPxTreeView" TagPrefix="dx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
-   <script type="text/javascript">
+<asp:content id="Content1" contentplaceholderid="Head" runat="server">
+    <script type="text/javascript">
 	    $(document).ready(function () {
 	       
 	        $("#Resource").fancybox({
@@ -40,8 +43,40 @@
 
 
     </script>
+    <script type="text/javascript">
+	    $(document).ready(function () {
+	       
+	        $("#CourseSelection").fancybox({
+	            'autoScale': false,
+                'autoDimensions': false,
+                'width': 1000,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'padding': 6,
+
+                'titlePosition': 'inside',
+                'titleShow': true,
 
 
+	        });
+
+	     
+	    });
+
+
+
+
+    function TriggerCourseList() 
+    {  
+
+        $('#CourseSelection').trigger('click');
+      //  window.setTimeout('parent.$.fancybox.close();', 2500);  StudentList
+       
+       
+    }
+
+
+    </script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -73,18 +108,17 @@
 
        
     </script>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+</asp:content>
+<asp:content id="Content2" contentplaceholderid="Content" runat="server">
     <div id="Div1" class="TitlePanel" style="border-top: solid 2px white; margin: 4px;
         padding: 4px; height: 470px; width: 99%; min-width: 1000px; overflow: auto">
-        
         <table border="0" cellpadding="2" cellspacing="2" width="100%">
             <tr>
                 <td>
-                    <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="370px"
-                        Width="100%" CssClass="gray">
-                        <asp:TabPanel HeaderText="Profile" Visible="true" runat="server" ID="dbstructure">
-                            <ContentTemplate>
+                    <asp:tabcontainer id="TabContainer1" runat="server" activetabindex="0" height="370px"
+                        width="100%" cssclass="gray">
+                        <asp:tabpanel headertext="Profile" visible="true" runat="server" id="dbstructure">
+                            <contenttemplate>
                                 <div class="detailEdit" style="visibility: visible; margin: 4px; padding-top: 6px;
                                     width: 98%;">
                                     <table border="0" cellpadding="5" cellspacing="4" style="width: 1280px; height: 100%;">
@@ -307,10 +341,10 @@
                                         </tr>
                                     </table>
                                 </div>
-                            </ContentTemplate>
-                        </asp:TabPanel>
-                        <asp:TabPanel HeaderText="Module" Visible="true" runat="server" ID="TabPanel3">
-                            <ContentTemplate>
+                            </contenttemplate>
+                        </asp:tabpanel>
+                        <asp:tabpanel headertext="Module" visible="true" runat="server" id="TabPanel3">
+                            <contenttemplate>
                                 <div style="visibility: visible; margin: 4px; height: 370px; overflow: auto;" class="detailEdit">
                                     <table border="0" cellpadding="2" cellspacing="2">
                                         <tr>
@@ -319,7 +353,7 @@
                                                     <tr>
                                                         <th>
                                                             <asp:Label runat="server" Text="Course:"></asp:Label>
-                                                            <asp:Button ID="Button15" runat="server" Text="+" CssClass="ShortButton" />
+                                                            <asp:Button ID="Button15" runat="server" Text="+" CssClass="ShortButton"  OnClientClick="TriggerCourseList(); return false;" />
                                                             <asp:Button ID="Button16" runat="server" Text="-" CssClass="ShortButton" />
                                                             <asp:ImageButton ID="ImageButton2"  ImageUrl="~/Images/moveup.gif" runat="server"   />
                                                              <asp:ImageButton ID="ImageButton3"   ImageUrl="~/Images/movedown.gif" runat="server"  />
@@ -327,8 +361,45 @@
                                                     </tr>
                                                     <tr>
                                                         <th>
-                                                            <asp:ListBox ID="lstCourseList" runat="server" Width="300px" SkinID="eFormList" Style="height: 312px;">
-                                                            </asp:ListBox>
+                                                            <div style ="  width:312px; height:310px; border: 1px solid lightgray; overflow:auto;     ">
+                                                              <dx:ASPxTreeView ID="ASPxTreeView1" runat="server" ClientInstanceName="ASPxTreeView1"
+                                                                    AllowSelectNode="true" EnableClientSideAPI="True" EnableCallBacks="True" 
+                                                                     Width = "312px"  Height = "310px"   ShowTreeLines = "false" ShowExpandButtons = "true" 
+                                                                        Font-Size="10px" 
+                                                                      >
+                                                                  
+                                                                    <Nodes>
+                                                                        <dx:TreeViewNode Name="RootNode" Text="Airbus 320 Introduction"    Image-Url = "~/images/computer.gif">
+                                                                         </dx:TreeViewNode> 
+                                                                                <dx:TreeViewNode Text="Airbus 320 Control"    Image-Url = "~/images/computer.gif">
+                                                                                 </dx:TreeViewNode> 
+                                                                                        <dx:TreeViewNode
+                                                                                          Image-Url = "~/images/computer.gif"
+                                                                                         Name="UsersNode" Text="Airbus 320 Landing">
+                                                                                          </dx:TreeViewNode>
+                                                                                                <dx:TreeViewNode Text="Airbus 320 Taking Off"    Image-Url = "~/images/computer.gif">
+                                                                                                </dx:TreeViewNode>
+                                                                                                <dx:TreeViewNode Text="Airbus 320 Supply"    Image-Url = "~/images/computer.gif">
+                                                                                                </dx:TreeViewNode>
+                                                                                                <dx:TreeViewNode Text="Airbus 320 Summary"    Image-Url = "~/images/computer.gif">
+                                                                                                </dx:TreeViewNode>
+                                                                                           
+                                                                                     
+                                                                          
+                                                                                <dx:TreeViewNode Text="New York Airport"   Image-Url = "~/images/sml_script.png">
+                                                                               </dx:TreeViewNode>
+                                                                                        <dx:TreeViewNode Name="UsersNode" Text="Airbus 320 Location"    Image-Url = "~/images/sml_script.png">
+                                                                                        </dx:TreeViewNode>
+                                                                                                <dx:TreeViewNode Text="Airbus 320 Service Management"   Image-Url = "~/images/sml_script.png">
+                                                                                                </dx:TreeViewNode>
+                                                                                        <dx:TreeViewNode Text="Airbus 320 Security"    Image-Url = "~/images/sml_script.png">
+                                                                                        </dx:TreeViewNode>
+                                                                                      
+                                                                            
+                                                                                       
+                                                                    </Nodes>
+                                                                </dx:ASPxTreeView>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -423,10 +494,10 @@
                                                                 </td>
                                                                 </tr> </table>
                                                             </div>
-                                                        </ContentTemplate>
-                                                    </asp:TabPanel>
-                                                    <asp:TabPanel HeaderText="Resource requirement" Visible="true" runat="server" ID="TabPanel5">
-                                                        <ContentTemplate>
+                                                        </contenttemplate>
+                        </asp:tabpanel>
+                        <asp:tabpanel headertext="Resource requirement" visible="true" runat="server" id="TabPanel5">
+                            <contenttemplate>
                                                             <div style="visibility: visible; margin: 4px; padding-top: 8px;" class="detailEdit">
                                                                 <table border="0" cellpadding="6" cellspacing="8" style="width: 960px; height: 100%;">
                                                                     <tr>
@@ -481,11 +552,11 @@
                                                                     </tr>
                                                                 </table>
                                                             </div>
-                                                        </ContentTemplate>
-                                                    </asp:TabPanel>
-                                                    <asp:TabPanel HeaderText="Instructor Qalification" Visible="true" runat="server"
-                                                        ID="TabPanel6">
-                                                        <ContentTemplate>
+                                                        </contenttemplate>
+                        </asp:tabpanel>
+                        <asp:tabpanel headertext="Instructor Qalification" visible="true" runat="server"
+                            id="TabPanel6">
+                            <contenttemplate>
                                                             <div style="visibility: visible; margin: 4px; padding-top: 5px;" class="detailEdit">
                                                                 <table border="0" cellpadding="6" cellspacing="8" style="width: 960px; height: 100%;">
                                                                     <tr>
@@ -554,17 +625,17 @@
                                                                     </tr>
                                                                 </table>
                                                             </div>
-                                                        </ContentTemplate>
-                                                    </asp:TabPanel>
-                                                </asp:TabContainer>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                                        </contenttemplate>
+                        </asp:tabpanel>
+                    </asp:tabcontainer>
+                </td>
+            </tr>
+        </table>
+    </div>
                             </ContentTemplate>
                         </asp:TabPanel>
-                        <asp:TabPanel HeaderText="Module Plan" Visible="true" runat="server" ID="TabPanel1">
-                            <ContentTemplate>
+                        <asp:tabpanel headertext="Module Plan" visible="true" runat="server" id="TabPanel1">
+                            <contenttemplate>
                                 <div style="height: 370px; width: 100%; overflow: auto;" class="detailEdit">
                                     <table border="0" cellpadding="6" cellspacing="6" width="100%">
                                         <tr>
@@ -664,10 +735,10 @@
                                         </tr>
                                     </table>
                                 </div>
-                            </ContentTemplate>
-                        </asp:TabPanel>
-                        <asp:TabPanel HeaderText="Schedule" Visible="true" runat="server" ID="TabPanel4">
-                            <ContentTemplate>
+                            </contenttemplate>
+                        </asp:tabpanel>
+                        <asp:tabpanel headertext="Schedule" visible="true" runat="server" id="TabPanel4">
+                            <contenttemplate>
                                 <div style="visibility: visible; margin: 4px;" class="detailEdit">
                                     <table border="0" cellpadding="2" cellspacing="2" width="100%">
                                         <tr>
@@ -740,8 +811,8 @@
                                         </tr>
                                     </table>
                                 </div>
-                            </ContentTemplate>
-                        </asp:TabPanel>
+                            </contenttemplate>
+                        </asp:tabpanel>
                     </asp:TabContainer>
                 </td>
             </tr>
@@ -755,8 +826,8 @@
                         <table border="0" cellpadding="2" cellspacing="2" style="width: 100%; height: 100%;">
                             <tr>
                                 <td align="right">
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                        <ContentTemplate>
+                                    <asp:updatepanel id="UpdatePanel1" runat="server">
+                                        <contenttemplate>
                                             <div class="RightAdminPanel">
                                                 <table border="0" width="100%">
                                                     <tr>
@@ -770,8 +841,8 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                        </contenttemplate>
+                                    </asp:updatepanel>
                                 </td>
                             </tr>
                         </table>
@@ -781,15 +852,30 @@
         </table>
     </div>
 
-        <a id="Resource" href="#ResourceTypeProfile" title="Add Resources" style="display: none;">
-        Inline</a>
-    <asp:HiddenField ID="hidControlList" runat="server" />
-    <asp:HiddenField ID="hidLabelList" runat="server" />
+   <a id="Resource" href="#ResourceTypeProfile" title="Add Resources" style="display: none;">
+       Inline</a>
+    <asp:hiddenfield id="hidControlList" runat="server" />
+    <asp:hiddenfield id="hidLabelList" runat="server" />
     <div style="display: none;">
         <div id="ResourceTypeProfile" style="width: 770px; height: 520px;">
             <uc2:ucResourceSelection ID="ucResourceSelectione1" runat="server" />
         </div>
     </div>
+
+    <a id="CourseSelection" href="#CourseList" title="Add Course" style="display: none;">
+        Inline</a>
+    
+    <div style="display: none;">
+        <div id="CourseList" style="width: 770px; height: 520px;">
+            <uc3:uccourseSelection ID="ucCourseSelection1" runat="server" />
+        </div>
+    </div>
+
+
+
+
+
+
     <script type="text/javascript">
 
         $('.pageBody').css('padding', '0');
@@ -797,4 +883,4 @@
         //$('.tab-tc:last').removeClass("tab-tc");
        
     </script>
-</asp:Content>
+</asp:content>

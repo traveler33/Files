@@ -337,13 +337,13 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton3;
         
         /// <summary>
-        /// lstCourseList control.
+        /// ASPxTreeView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstCourseList;
+        protected global::DevExpress.Web.ASPxTreeView.ASPxTreeView ASPxTreeView1;
         
         /// <summary>
         /// TabContainer2 control.
@@ -722,6 +722,15 @@ namespace Pelesys.Scheduling.Web.Files {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Pelesys.Scheduling.Web.Controls.ucResourceSelection ucResourceSelectione1;
+        
+        /// <summary>
+        /// ucCourseSelection1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Pelesys.Scheduling.Web.Control.ucSelectCourse ucCourseSelection1;
         
         /// <summary>
         /// Master property.

@@ -19,7 +19,7 @@ namespace Pelesys.Scheduling.Web.Files
     public partial class ResourceTypeProfile : PageBase
     {
 
-       
+        public const string SessionTabList = "DesignFormTabList";
 
         private const string SaveMessage = "Save is done. Thank you!";
 
@@ -169,9 +169,11 @@ namespace Pelesys.Scheduling.Web.Files
 
 
 
-
+            
             if (!IsPostBack)
             {
+              //Every time when reload this page, this tab session should be clear up
+              Session[SessionTabList] = null;
               IniForm();
 
            
