@@ -9,6 +9,155 @@
 <%@ Register Src="../Control/ucAddUsers.ascx" TagName="ucAddUser" TagPrefix="uc4" %>
 <%@ MasterType VirtualPath="~/Master/Main.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+   <style type="text/css">
+        .splitContainer
+        {
+            height: 520px;
+        }
+        
+        #userGroupPane
+        {
+            overflow: auto;
+            height: 450px;
+            background-color: #FFF;
+            border: 1px lightgray solid;
+            width: 96%;
+        }
+        .btnSave
+        {
+            background-color: #293A49;
+            border: medium none;
+            color: White;
+            cursor: pointer;
+            font-weight: bold;
+            height: 24px;
+            margin: 4px;
+            min-width: 70px;
+        }
+        .loading
+        {
+            float: right;
+            margin-top: 4px;
+            margin-right: 4px;
+            display: none;
+        }
+        .prerequisite .content
+        {
+            overflow: hidden !important;
+        }
+    </style>
+    <script src="../js/exp_parser.js" type="text/javascript"></script>
+    <script src="../js/jquery.splitter/splitter-16.js" type="text/javascript"></script>
+    <script src="../js/jquery.jsTree/jquery.jstree.js" type="text/javascript"></script>
+    <script src="../js/zeroclipboard/ZeroClipboard.js" type="text/javascript"></script>
+    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../lib/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../js/jquery.treeview.js" type="text/javascript"></script>
+        <style type="text/css">
+        .fancybox-custom .fancybox-skin
+        {
+            box-shadow: 0 0 50px #222;
+        }
+    </style>
+        <script type="text/javascript">
+            //改造方法
+
+
+            var domainID;
+            var path;
+            var currentCourseIDOrLessonID;
+            var type;
+            var iscopy;
+            var isPublish;
+            var isShare;
+
+            var jstreePluginsArray;
+
+            $(function () {
+                $(window).keydown(function (evt) { iscopy = evt.which == 17 ? true : iscopy; }).keyup(function (evt) { iscopy = evt.which == 17 ? false : iscopy; });
+                $(".splitContainer").splitter({
+                    type: "v",
+                    outline: true,
+                    sizeLeft: $(".splitContainer").width() * 0.25,
+                    resizeToWidth: true,
+                    dock: "left",
+                    dockSpeed: 200,
+                    dockKey: 'Z', // Alt-Shift-Z in FF/IE
+                    accessKey: 'I'	// Alt-Shift-I in FF/IE
+                });
+                isShare = $('#<%=hfIsShare.ClientID%>').val() == "true";
+                if (isShare) {
+
+                }
+                currentCourseIDOrLessonID = $('#<%=hfCourseID.ClientID%>').val();
+                domainID = $('#<%=hfCurrentDomainID.ClientID%>').val();
+                if (domainID > 0) {
+                    path = eval($('#<%=hfInitialTreePath.ClientID%>').val());
+                }
+
+                var isTempPublish = $('#<%=hfIsPublishOrShareCourse.ClientID %>').val();
+                if (isTempPublish == 'False') {
+                    jstreePluginsArray = ["json_data", "themes", "ui", "crrm", "types"];
+                    $(".forunpublished").hide();
+                }
+                else {
+                    jstreePluginsArray = ["json_data", "themes", "ui", "crrm", "types", "dnd"];
+                }
+                //  initializeTree();
+                //   judgeBtnEnable();
+            });
+            $(document).ready(function () {
+
+                // first example
+                $("#browser").treeview();
+
+
+            });
+            $(document).ready(function () {
+
+                // first example
+                $("#ddbrowser").treeview();
+
+
+            });
+            function iframeGotoPage(code, type) {
+                // var node = $.jstree._focused().get_selected();
+                $("#frmContent")[0].src
+                = ($('#hdnIframePageName').val().length > 0 ? $('#hdnIframePageName').val() : 'ResourcePoolProfile.aspx')
+                + '?type=' + type
+
+                + '&Code=' + code
+
+                + '&courseID=' + $('#<%=hfCourseID.ClientID%>').val()
+                + '&action=load&nohead=1';
+            }
+
+
+            function iframeGotoInventoryPage(code, Type) {
+                // var node = $.jstree._focused().get_selected();
+                $("#frmContent")[0].src
+                = ($('#hdnIframePageName').val().length > 0 ? $('#hdnIframePageName').val() : 'ResourceInventory.aspx')
+                + '?type=' + type
+
+                + '&Code=' + code
+
+                + '&courseID=' + $('#<%=hfCourseID.ClientID%>').val()
+                + '&action=load&nohead=1';
+            }
+
+
+            function iframeGotoSechduleCoursePage(code) {
+                // var node = $.jstree._focused().get_selected();
+                $("#frmContent")[0].src
+                = ($('#hdnIframePageName').val().length > 0 ? $('#hdnIframePageName').val() : 'SchCourseProfile.aspx')
+                + '?type=' + type
+
+                + '&Code=' + code
+
+                + '&courseID=' + $('#<%=hfCourseID.ClientID%>').val()
+                + '&action=load&nohead=1';
+            }
+    </script>
     <script type="text/javascript">
         var GridViewAdjustRequired = true;
         function DropDownHandler(s, e) {
@@ -83,6 +232,7 @@
                 }
             }
         }
+
         function LocDefineFancyBox() {
 
             $("#locationList").fancybox({
@@ -386,6 +536,12 @@
             </Panes>
         </dx:ASPxSplitter>
     </div>
+    <asp:TextBox ID="hfCurrentId" runat="server" Style="display: none"></asp:TextBox>
+    <asp:HiddenField ID="hfCurrentDomainID" runat="server" />
+    <asp:HiddenField ID="hfInitialTreePath" runat="server" />
+    <asp:HiddenField ID="hfCourseID" runat="server" />
+    <asp:HiddenField ID="hfIsPublishOrShareCourse" runat="server" />
+    <asp:HiddenField ID="hfIsShare" runat="server" />
     <a id="locationList" href="#Location" title="Location" style="display: none;">Inline</a>
     <div style="display: none;">
         <div id="Location" style="width: 840px; height: 100%;">
