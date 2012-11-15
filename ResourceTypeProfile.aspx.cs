@@ -111,16 +111,29 @@ namespace Pelesys.Scheduling.Web.Files
             get
             {
                 //Pelesys.Scheduling.ResourceType oRT = Pelesys.Scheduling.ResourceType.GetDataBy(Convert.ToInt32(ResourceTypeID));
+                if (ctrFormDesign1.eFormID != 0  && IsDesignMode == true )
+                {
+                    return ctrFormDesign1.eFormID;
+                }
                 if (ddlDesignForm.SelectedValue != string.Empty)
                 {
                     return Convert.ToInt32( ddlDesignForm.SelectedValue);
                 }
-                else
+                else  if (ddlDesignForm.SelectedValue == string.Empty)
                 {
                     return 0;
                 }
-            }
+                else
+                {
+                    if (ctrFormDesign1.eFormID != 0)
+                    {
+                        return ctrFormDesign1.eFormID;
+                    }
 
+                    return 0;
+                }
+            }
+          
 
 
         }
@@ -161,6 +174,18 @@ namespace Pelesys.Scheduling.Web.Files
             this.lblIsDeplete.Text = GetString("Page_ResourceTypeIsDepleteMaterial", "Is it a deplete material?");
 
         }
+
+        protected void SetFormList()
+        {
+            ctrFormDesign1.CurrentTab = this.TabContainer1;
+            ddlDesignForm.DataTextField = "Name";
+            ddlDesignForm.DataValueField = "FormID";
+            ddlDesignForm.DataSource = Pelesys.Scheduling.DesignForm.GetDataBy(1);
+            ddlDesignForm.DataBind();
+        
+            ddlDesignForm.Items.Add(new ListItem("",""));
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -203,12 +228,8 @@ namespace Pelesys.Scheduling.Web.Files
                this.radManaged.Checked = true;
             //  this.radInventory.Checked = true;
 
-               ctrFormDesign1.CurrentTab = this.TabContainer1;
-               ddlDesignForm.DataTextField = "Name";
-               ddlDesignForm.DataValueField = "FormID";
-               ddlDesignForm.DataSource = Pelesys.Scheduling.DesignForm.GetDataBy(1);
-               ddlDesignForm.DataBind();
 
+               SetFormList();
                ddlDesignForm.Items.Insert(0, new ListItem("","0"));
            
             //   this.radManaged.Checked =true;
@@ -232,8 +253,10 @@ namespace Pelesys.Scheduling.Web.Files
         public void InitTabs()
         {
             Session[FormDesign.SessionImageList] = null;
-
-            IniField();
+           // if (IsDesignMode)
+            {
+                IniField();
+            }
         }
 
         protected void IniForm()
@@ -255,6 +278,7 @@ namespace Pelesys.Scheduling.Web.Files
             {
                 Session[FormDesign.SessionImageList] = null;
             }
+           
            // this.TabContainer1.Attributes.Add("onmouseout", "hideToolTip()");
 
         }
@@ -280,6 +304,10 @@ namespace Pelesys.Scheduling.Web.Files
             // tab list is empty, so add a new active tab as  a profile tab which should not be remove
             if ( oTabList.Count == 0  )
             {
+
+                // add a new table if eform id =0
+             
+
             //    string TabProfileName = GetString("Resource-DesignFormTab-Profile", "Profile");
             //    string SysIdentity = "ResourceTypeSystemIdentifier" + Pelesys.Scheduling.ResourceType.GetMaxTabID().ToString();
 
@@ -292,11 +320,46 @@ namespace Pelesys.Scheduling.Web.Files
 
             //    AjexTabs.AddNewTabToTabContainer(TabContainer1, TabDesingName, SysDesignIdentity,
             //             TabProfileName, hidActiveTab.ClientID, true);
+                if (FormID == 0)
+                {
+                    if (!IsPostBack)
+                    {
+                        //if (TabContainer1.Tabs.Count == 1)
+                        //{
+                        //    TabPanel oNewTab = new TabPanel();
+                        //    oNewTab.HeaderText = "NewTab1";
+                        //    Guid oNewGuid = Guid.NewGuid();
+                        //    oNewTab.ID = oNewGuid.ToString();
+                        //    oNewTab.TabIndex = 1;
+                        //    TabContainer1.Tabs.Add(oNewTab);
+                        //    if (Session["DesignFormTabList"] == null)
+                        //    {
+                        //        List<DesignFormTab> oTabLiist = new List<DesignFormTab>(); 
+                        //        foreach (TabPanel otp in TabContainer1.Tabs)
+                        //        {
+                        //            DesignFormTab oTab = new DesignFormTab();
+                        //            oTab.SysIdentity = otp.ID;
+                        //            oTab.FormID = Convert.ToInt32( FormID);
+                        //            oTab.Name = otp.HeaderText;
+                        //            oTab.IsVisible = true;
+                        //            oTab.IsEnabled = true;
+                        //            oTabLiist.Add(oTab);
+
+
+                        //        }
+                        //    }
+                        //}
+                    }
+                }
+
 
                 if ( Session["DesignFormTabList"] != null )
                 {
                     List<DesignFormTab> oList = Session["DesignFormTabList"]  as List<DesignFormTab>;
-                  
+
+                   
+
+
                    foreach ( DesignFormTab oTab in oList   )
                    {
                        Boolean IsAlreadyLoad = false;
@@ -407,7 +470,57 @@ namespace Pelesys.Scheduling.Web.Files
 
         protected void IniField()
         {
+            List<DesignFormTab> oTabList = DesignFormTab.GetDataBy(Convert.ToInt32(FormID));
 
+            // First tab was default table should not remove
+            //    TabContainer1.Tabs.Clear();
+          
+
+            if (FormID > 0)
+            {
+                if (TabContainer1.Tabs.Count > 1)
+                {
+                    // keep the first one, remove all 
+                    foreach (TabPanel oTab in TabContainer1.Tabs)
+                    {
+                        if (oTab.ID.ToLower() != "tabs")
+                        {
+                            TabContainer1.Tabs.Remove(oTab);
+                        }
+
+                    }
+                }
+
+                foreach (DesignFormTab oTab in oTabList)
+                {
+                    Boolean IsAlreadyLoad = false;
+                    foreach (TabPanel oPanel in TabContainer1.Tabs)
+                    {
+                        if (oTab.Name.ToUpper() == oPanel.HeaderText.ToUpper())
+                        {
+                            IsAlreadyLoad = true;
+                            break;
+
+                        }
+                        if (oPanel.HeaderText == string.Empty)
+                        {
+                            TabContainer1.Tabs.Remove(oPanel);
+                        }
+
+                    }
+                    if (!IsAlreadyLoad)
+                    {
+                        AjexTabs.AddNewTabToTabContainer(TabContainer1, oTab.Name, oTab.SysIdentity,
+                        oTab.Description, hidActiveTab.ClientID, Convert.ToBoolean(oTab.IsEnabled));
+                    }
+                }
+               
+            
+            }
+
+
+
+            //LoadeFormTabList(FormID);
             if (TabContainer1.Tabs.Count > 0)
             {
                 foreach (TabPanel panel in this.TabContainer1.Tabs)
@@ -419,18 +532,24 @@ namespace Pelesys.Scheduling.Web.Files
                     List<DesignFormField> oControlList = new List<DesignFormField>();
                     FormDesign oDesign = new FormDesign();
                     oDesign.oPage = this.Page;
-                    DesignFormTab oTab = DesignFormTab.GetDataBySysIdentity(1, panel.ID);
+                    
+                    DesignFormTab oTab = DesignFormTab.GetDataBySysIdentity(Convert.ToInt32(FormID), panel.ID);
                     if (oTab != null)
                     {
-                      //  oControlList = DesignFormField.GetDataBy(oTab.FormTabID, 1);
-                      //  oDesign.SetPanelControl(panel, oControlList);
+                        oControlList = DesignFormField.GetDataBy(oTab.SysIdentity, Convert.ToInt32( FormID));
+                        oDesign.SetPanelControl(panel, oControlList);
                     }
-                }
+                    }
                 }
 
                 this.ctrFormDesign1.CreateImageControls(this.TabContainer1);
             }
 
+            else
+            {
+
+
+            }
 
         }
 
@@ -442,11 +561,11 @@ namespace Pelesys.Scheduling.Web.Files
 
                 // 
                 this.TabContainer1.CssClass = "eFormDesign";
-
-
+               
                 if (this.ctrFormDesign1.IsEnable)
                 {
                     IniField();
+
                     this.ctrFormDesign1.CreateFormDesignScript("Main", UpdatePanel1, TabContainer1);
                     this.ctrFormDesign1.IsEnable = false;
                 }
@@ -459,15 +578,15 @@ namespace Pelesys.Scheduling.Web.Files
                 {
                     FormDesign.SetActiveIndex(TabContainer1, otab.Name, otab.SysIdentity);
                 }
-                ddlDesignForm.Enabled = false;
 
+               // this.ctrFormDesign1.IsEnable = false;
             }
             else
             {
 
                 this.TabContainer1.CssClass = "gray";
-                ddlDesignForm.Enabled = true; 
-
+                IniField();
+                ddlDesignForm.Enabled = true;
             }
             // TabContainer1.ActiveTabIndex = 1;
 
@@ -583,7 +702,8 @@ namespace Pelesys.Scheduling.Web.Files
         protected void RadioInventory_CheckedChanged(Object sender,
                                        EventArgs e)
         {
-
+          //  LoadeFormTabList(FormID);
+           // ctrFormDesign1.eFormID = Convert.ToInt32( FormID);
         }
 
         protected void RadioManage_CheckedChanged(Object sender,
@@ -595,6 +715,26 @@ namespace Pelesys.Scheduling.Web.Files
         }
 
 
+        protected void FormLit_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            ctrFormDesign1.eFormID = Convert.ToInt32(FormID);
+            if (FormID == 0)
+            {
+                if (TabContainer1.Tabs.Count > 1)
+                {
+                    // keep the first one, remove all 
+                    foreach (TabPanel oTab in TabContainer1.Tabs)
+                    {
+                        if (oTab.ID.ToLower() != "tabs")
+                        {
+                            TabContainer1.Tabs.Remove(oTab);
+                        }
+
+                    }
+                }
+            }
+        }
+
         protected void OnDesignButtonClick(object sender, EventArgs e)
         {
 
@@ -602,6 +742,11 @@ namespace Pelesys.Scheduling.Web.Files
             string sJSFunction = @"EFormShowPanel(true, 'EFormDesignWidnow');";
             if (IsDesignMode == false)
             {
+              //  IniField();
+               
+              
+                ctrFormDesign1.IsStatDesign = true;
+                ctrFormDesign1.IsDesignMode = true;
                 SetEFormDesingWindowProperties();
                 IsDesignMode = true;
                 ScriptManager.RegisterStartupScript(upEnableEFormDesign, upEnableEFormDesign.GetType(), jsfuncID.ToString(), sJSFunction, true);
@@ -613,6 +758,7 @@ namespace Pelesys.Scheduling.Web.Files
                 bntDesign.Text = GetString("Page_ResourceTypeofDesignButtonStatusNormalMode", "Normal Mode");
                 if (ddlDesignForm.SelectedValue == string.Empty)
                 {
+                    Session["DesignFormTabList"] = null;
                     ctrFormDesign1.eFormID = 0;
                 }
                 else
@@ -631,18 +777,29 @@ namespace Pelesys.Scheduling.Web.Files
                     }
 
                 }
+                ddlDesignForm.Enabled = false;
                 
             }
             else
             {
-
-                sJSFunction = @"EFormShowPanel(false, 'EFormDesignWidnow');window.location.href=window.location.href;";
+                ctrFormDesign1.IsDesignMode = true;
+                sJSFunction = @"EFormShowPanel(false, 'EFormDesignWidnow');";// @"EFormShowPanel(false, 'EFormDesignWidnow');window.location.href=window.location.href;";
                 ScriptManager.RegisterStartupScript(upEnableEFormDesign, upEnableEFormDesign.GetType(), jsfuncID.ToString(), sJSFunction, true);
                 IsDesignMode = false;
                 TabContainer1.ActiveTabIndex = 0;
                 bntDesign.Text = GetString("Page_ResourceTypeofDesignButton", "Design");
                 ddlDesignForm.Enabled = false;
                 TabContainer1.Tabs[0].Visible = true;
+                
+               
+                if (ctrFormDesign1.eFormID != 0)
+                {
+                    SetFormList();
+
+                    ddlDesignForm.SelectedValue = ctrFormDesign1.eFormID.ToString();
+                }
+
+
                 foreach (TabPanel oTab in TabContainer1.Tabs)
                 {
                     if (oTab.TabIndex == 0)

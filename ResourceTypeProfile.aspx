@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Master/MainTab.Master"
-    CodeBehind="ResourceTypeProfile.aspx.cs" Inherits="Pelesys.Scheduling.Web.Files.ResourceTypeProfile" %>
+    CodeBehind="ResourceTypeProfile.aspx.cs" Inherits="Pelesys.Scheduling.Web.Files.ResourceTypeProfile"   EnableEventValidation="false" %>
 
 <%@ Register Src="../Control/ucResourceProfile.ascx" TagName="ucResourceProfile"
     TagPrefix="uc1" %>
@@ -24,6 +24,41 @@
 
 
         }
+
+         $(document).ready(function () {
+	       
+	        $('#UploadFile').fancybox({
+	            'overlayShow': true,
+	            'transitionIn': 'elastic',
+	            'transitionOut': 'elastic',
+                'width': 600, 
+                'height': 132, 
+                'padding': 6,
+                'zoomOpacity': true,
+                'zoomSpeedIn': 500,
+                'zoomSpeedOut': 500,
+                'type': 'iframe' 
+
+	        });
+
+	     
+	    });
+
+          $(document).ready(function () {
+	       
+	        $('#EnlargeImage').fancybox({
+	            'overlayShow': true,
+	            'transitionIn': 'elastic',
+	            'transitionOut': 'elastic',
+                'padding': 0,
+                'zoomOpacity': true,
+                'zoomSpeedIn': 500,
+                'zoomSpeedOut': 500,
+
+	        });
+
+	     
+	    });
 
   $(document).ready(function () {
 	       
@@ -85,6 +120,8 @@
 
 
         });
+
+
         function callBoxFancy(cclass, msg) {
             $('#status').text(msg);
             var currentClass = $('#status').attr("class");
@@ -151,7 +188,7 @@
                         <ContentTemplate>
                             <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" CssClass="gray"
                                 Visible="true" Width="100%" Height="370px">
-                                <asp:TabPanel ID="Tabs" HeaderText="Profile" runat="server" ToolTip="Resource Type Profile">
+                                <asp:TabPanel ID="Tabs" HeaderText="Profile" runat="server" ToolTip="Resource Type Profile"  >
                                     <ContentTemplate>
                                         <div style="visibility: visible; margin: 4px; padding: 4px;" class="detailEdit">
                                             <table border="0" cellpadding="6" cellspacing="6" width="100%">
@@ -283,10 +320,7 @@
                                         </div>
                                     </ContentTemplate>
                                 </asp:TabPanel>
-                                <asp:TabPanel ID="NewTab1" HeaderText="NewTab1" runat="server" ToolTip="Form Design: Design your own resource type">
-                                    <ContentTemplate>
-                                    </ContentTemplate>
-                                </asp:TabPanel>
+                           
                             </asp:TabContainer>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -307,7 +341,7 @@
                                                             <asp:Label ID="lblExisting" runat="server" Text="Existing Design:"></asp:Label>
                                                         </th>
                                                         <td align="left">
-                                                            <asp:DropDownList ID="ddlDesignForm" runat="server" Width="280px">
+                                                            <asp:DropDownList ID="ddlDesignForm" runat="server" Width="280px"   AutoPostBack="True" OnSelectedIndexChanged="FormLit_OnSelectedIndexChanged"    >
                                                             </asp:DropDownList>
                                                         </td>
                                                         <td align="right" style="width: 100px;">
@@ -345,7 +379,7 @@
     </div>
     <div id="EFormDesignWidnow" class="EFormPanel" style="z-index: 99999;">
         <uc4:ctrEFormDesign ID="ctrFormDesign1" runat="server" IsFieldOnly="false" CultureID="290"
-            eFormID="1" />
+            eFormID="0" />
     </div>
     <a id="MessageBox" href="#Message" title="" style="display: none;">Inline</a>
     <div style="display: none;">

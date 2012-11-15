@@ -265,15 +265,6 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::System.Web.UI.WebControls.Button bntPreview;
         
         /// <summary>
-        /// NewTab1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel NewTab1;
-        
-        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
