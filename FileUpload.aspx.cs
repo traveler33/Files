@@ -102,7 +102,10 @@ namespace eForm.files
             }
             Session[FormDesign.ImageList] = oImageList;
             Session[FormDesign.SessionImageList] = oImageList;
-            ScriptManager.RegisterStartupScript(this, typeof(string), "script",  "<script type=text/javascript> parent.location.href = parent.location.href;</script>", false); 
+
+            Session["ReloadForm"] = oImageList;
+           
+           ScriptManager.RegisterStartupScript(this, typeof(string), "script",  "<script type=text/javascript> parent.location.href = parent.location.href;</script>", false); 
 
             //string JsFunction = @"window.opener.document.getElementById('" + ViewState["ImageClientID"].ToString() + "').src = encodeURI('" + ImagePath + "'); "
             //+ "window.opener.document.getElementById('" + ViewState["ImageHiddenPathClientID"].ToString() + "').value = encodeURI('" + ImagePath + "');"

@@ -924,7 +924,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <div style="height: 260px; width: 900px; border: 1px lightgray solid; overflow: auto;">
+                                                <div style="height: 260px; width: 1000px; border: 1px lightgray solid; overflow: auto;">
                                                     <div class="resultGridView">
                                                       <dx:ASPxGridView ID="ASPxGridView1" ClientInstanceName="grid" runat="server" KeyFieldName="SettingID"
                                                                     Border-BorderColor="LightGray" Border-BorderStyle="Solid" Border-BorderWidth="1"
@@ -933,31 +933,36 @@
                                                                     SettingsPager-AlwaysShowPager="True" SettingsPager-Position="Bottom">
                                                                     <Columns>
                                                                          <dx:GridViewDataColumn FieldName="Resource" VisibleIndex="1" Caption="Resource"
-                                                                                SortOrder="Ascending" />
+                                                                                SortOrder="Ascending"  Width="200px"/>
                                                                          
 
-                                                                     
-                                                                        <dx:GridViewDataTextColumn Caption="Cost" VisibleIndex="2" Width="160px">
-                                                                            <DataItemTemplate>
-                                                                                <dx:ASPxTextBox ID="ASPxTextBox1" runat="server"   Text='<%#Bind("ResourceCost") %>'   Width="140px" >
-                                                                                </dx:ASPxTextBox>
-                                                                            </DataItemTemplate>
-                                                                            <CellStyle HorizontalAlign="Center">
-                                                                            </CellStyle>
-                                                                            <HeaderStyle HorizontalAlign="Center" />
-                                                                        </dx:GridViewDataTextColumn>
-                                                                      
-                                                                         <dx:GridViewDataColumn FieldName="Instructor" VisibleIndex="3" Caption="Instructor"
+                                                                         <dx:GridViewDataColumn FieldName="1Hours" VisibleIndex="2" Caption="Hour"
                                                                                 SortOrder="Ascending" />
-                                                                        <dx:GridViewDataTextColumn Caption="Cost" VisibleIndex="4" Width="160px">
-                                                                            <DataItemTemplate>
-                                                                                <dx:ASPxTextBox ID="ASPxTextBox1" runat="server"  Text='<%#Bind("InstructorCost") %>'  Width="150px" >
-                                                                                </dx:ASPxTextBox>
-                                                                            </DataItemTemplate>
-                                                                            <CellStyle HorizontalAlign="Center">
-                                                                            </CellStyle>
-                                                                            <HeaderStyle HorizontalAlign="Center" />
-                                                                        </dx:GridViewDataTextColumn>
+
+                                                                         <dx:GridViewDataColumn FieldName="1HourRate" VisibleIndex="3" Caption="Hour Rate"
+                                                                                SortOrder="Ascending" />
+
+                                                                         <dx:GridViewDataColumn FieldName="ResourceCost" VisibleIndex="4" Caption="Resource Cost"  Width="150px"
+                                                                                SortOrder="Ascending" />
+                                                                       
+                                                                     
+
+                                                                     
+                                                                      
+                                                                      
+                                                                         <dx:GridViewDataColumn FieldName="Instructor" VisibleIndex="5" Caption="Instructor"
+                                                                                SortOrder="Ascending" Width="200px" />
+
+                                                                         <dx:GridViewDataColumn FieldName="2Hours" VisibleIndex="6" Caption="Hour"
+                                                                                SortOrder="Ascending" />
+
+                                                                         <dx:GridViewDataColumn FieldName="2HourRate" VisibleIndex="7" Caption="Hour Rate"
+                                                                                SortOrder="Ascending" />
+
+                                                                         <dx:GridViewDataColumn FieldName="InstructorCost" VisibleIndex="8" Caption="Instructor Cost"  Width="150px"
+                                                                                SortOrder="Ascending" />
+                                                                       
+                                                                     
                                                                    
                                                                      
                                                                     

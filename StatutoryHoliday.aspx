@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="StatutoryHoliday.aspx.cs" Inherits="Pelesys.Scheduling.Web.Files.StatutoryHoliday" %>
-    <%@ Register Src="../Control/ucLocation.ascx" TagName="ucLocation" TagPrefix="uc3" %>
 
 <%@ MasterType VirtualPath="~/Master/Main.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
@@ -15,83 +14,6 @@
             height: 37px;
         }
     </style>
-     <script src="../js/exp_parser.js" type="text/javascript"></script>
-    <script src="../js/jquery.splitter/splitter-16.js" type="text/javascript"></script>
-    <script src="../js/jquery.jsTree/jquery.jstree.js" type="text/javascript"></script>
-    <script src="../js/zeroclipboard/ZeroClipboard.js" type="text/javascript"></script>
-    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="../lib/jquery.cookie.js" type="text/javascript"></script>
-    <script src="../js/jquery.treeview.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            // first example
-            $("#ddbrowser").treeview();
-
-
-        });
-    function LocDefineFancyBox() {
-
-            $("#locationList").fancybox({
-                'autoScale': false,
-                'autoDimensions': false,
-                'width': 1200,
-                'transitionIn': 'elastic',
-                'transitionOut': 'elastic',
-                'padding': 6,
-
-                'titlePosition': 'inside',
-                'titleShow': true,
-
-                "onUpdate": function () {
-                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
-                },
-                "afterLoad": function () {
-                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
-                }
-            });
-
-            LocreadyFancy();
-        }
-        function LocreadyFancy() {
-
-            $('#locationList').trigger('click');
-            // window.setTimeout('parent.$.fancybox.close();', 2500);
-
-
-        }
-        function CopyYearFancy() {
-
-            $("#CopyYearBoxLink").fancybox({
-                'autoScale': true,
-                'autoDimensions': true,
-                'width': 600,
-                'transitionIn': 'elastic',
-                'transitionOut': 'elastic',
-                'padding': 6,
-
-                'titlePosition': 'inside',
-                'titleShow': false,
-
-                "onUpdate": function () {
-                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
-                },
-                "afterLoad": function () {
-                    $(".fancybox-title").css({ 'top': '-30px', 'bottom': 'auto' });
-                }
-            });
-
-            CopyYearFancyTrigger();
-        }
-        function CopyYearFancyTrigger() {
-
-            $('#CopyYearBoxLink').trigger('click');
-            // window.setTimeout('parent.$.fancybox.close();', 2500);
-
-
-        }
-        </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div style="visibility: visible; margin: 4px; padding: 4px; border-top: 6px solid white;
@@ -102,43 +24,26 @@
                     <div style=" padding: 8px; background-color:White; border: 1px solid lightgray;">
                     <table>
                         <tr>
-                          <%--                            <th align="left">
-                     
-                            </th>--%>
-                            <td class="style2" colspan="2">
-                                                            Location:   <asp:Button ID="Button1" runat="server" Text="+" CssClass="ShortButton" OnClientClick="LocDefineFancyBox();return false;" />
-                                            <asp:Button ID="Button2" runat="server" Text="-" CssClass="ShortButton" /></td>
-<%--  <td class="style2">--%>
-<%--  </td>--%>
-
+                            <th align="left">
+                                Location:
+                            </th>
+                            <td class="style2">
+                            </td>
                             <th style="width: 800px">
                                 <%--           &nbsp;Add or remove statutory holidays for year: --%>
                                 <table>
                                     <tr>
                                         <td>
-                                            <asp:Button ID="Button16" runat="server" Text="+" CssClass="ShortButton" />
+                                            <asp:Button ID="Button16" runat="server" Text="+" CssClass="ShortButton" OnClientClick="DefineFancyBox();return false;" />
                                             <asp:Button ID="Button17" runat="server" Text="-" CssClass="ShortButton" />
                                         </td>
                                         <td>
-                                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Add or remove statutory holidays  "
+                                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Add or remove statutory holidays for the year of: "
                                                 Font-Size="Small" />
                                         </td>
-                                        <td style="width: 20px;">
-                            </td>
                                         <td>
-                                        <asp:Button ID="Button3" runat="server" Text="+" CssClass="ShortButton" OnClientClick="CopyYearFancy();return false;" />
                                         </td>
                                         <td>
-                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Create a new year  "
-                                                Font-Size="Small" />
-                                        </td>
-                                        <td style="width: 200px;">
-                            </td>
-                                        <td>
-                                        <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="          Current year:"
-                                                Font-Size="Small" />
-                                        </td>
-                                        <td align="right">
                                             <dx:ASPxDropDownEdit ID="YearDL" runat="server" Width="80px" Theme="Office2010Blue"
                                                 Font-Size="Small">
                                             </dx:ASPxDropDownEdit>
@@ -230,65 +135,6 @@
             </tr>
         </table>
     </div>
-    <a id="locationList" href="#Location" title="Location" style="display: none;">Inline</a>
-    <div style="display: none;">
-        <div id="Location" style="width: 840px; height: 100%;">
-            <uc3:ucLocation ID="ucLocation1" runat="server" />
-        </div>
-    </div>
-
-    <a id="CopyYearBoxLink" href="#CopyYearBox" title="Copy Year" style="display: none;">Inline</a>
-    <div style="display: none;">
-        <div id="CopyYearBox" style="width: 840px; height: 100%;">
-            <table>
-            <tr>
-            <td></td>
-            <td>
-                                        <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Do you want to copy the current year's "
-                                                Font-Size="Small" />
-                                        </td>
-                                        <td></td>
-                                        <td align="right">
-                                            <dx:ASPxDropDownEdit ID="ASPxDropDownEdit1" runat="server" Width="80px" Theme="Office2010Blue"
-                                                Font-Size="Small">
-                                            </dx:ASPxDropDownEdit>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                        <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text=" statutory holiday to year "
-                                                Font-Size="Small" />
-                                        </td>
-                                        <td></td>
-                                        <td align="right">
-                                            <dx:ASPxDropDownEdit ID="ASPxDropDownEdit2" runat="server" Width="80px" Theme="Office2010Blue"
-                                                Font-Size="Small">
-                                            </dx:ASPxDropDownEdit>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                        <dx:ASPxLabel ID="ASPxLabel6" runat="server" Text=" ?"
-                                                Font-Size="Small" />
-                                        </td>
-            </tr>
-            <tr><td colspan="10"></td></tr>
-            <tr>
-            <tr><td colspan="10"></td></tr>
-            <tr>
-            <tr><td colspan="10"></td></tr>
-            <tr>
-            <td colspan="2"></td>
-            <td colspan="2">
-<dx:ASPxButton runat="server" Text="Yes"></dx:ASPxButton>
-            </td>
-            <td colspan="2"></td>
-            <td colspan="4">
-<dx:ASPxButton ID="ASPxButton1" runat="server" Text="No"></dx:ASPxButton>
-            </td>
-            </tr>
-            </table>
-        </div>
-    </div>
-
     <script type="text/javascript">
 
         $('.pageBody').css('padding', '0');

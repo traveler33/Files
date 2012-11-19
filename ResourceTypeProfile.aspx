@@ -50,7 +50,7 @@
 	            'overlayShow': true,
 	            'transitionIn': 'elastic',
 	            'transitionOut': 'elastic',
-                'padding': 0,
+                'padding': 4,
                 'zoomOpacity': true,
                 'zoomSpeedIn': 500,
                 'zoomSpeedOut': 500,

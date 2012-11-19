@@ -158,15 +158,23 @@ namespace Pelesys.Scheduling.Web.Files
                 DataTable dt = new DataTable();
                 dt.Columns.Add("SettingID", typeof(int)); ;
                 dt.Columns.Add("Resource", typeof(string));
+                dt.Columns.Add("1Hours", typeof(string));
+                dt.Columns.Add("1HourRate", typeof(string));
                 dt.Columns.Add("ResourceCost", typeof(string));
                 dt.Columns.Add("Instructor", typeof(string));
+                dt.Columns.Add("2Hours", typeof(string));
+                dt.Columns.Add("2HourRate", typeof(string));
                 dt.Columns.Add("InstructorCost", typeof(string));
                 DataRow  oNR = dt.NewRow();
 
                 oNR["Resource"] = "b283 Class room";
-                oNR["ResourceCost"] = "$520.00";
+                oNR["1Hours"] = "10";
+                oNR["1HourRate"] = "60";
+                oNR["ResourceCost"] = "$600.00";
                 oNR["Instructor"] = "Kanndy B .Smith";
-                oNR["InstructorCost"] = "$1719.00";
+                oNR["2Hours"] = "20";
+                oNR["2HourRate"] = "160";
+                oNR["InstructorCost"] = "$1200.00";
 
                 dt.Rows.Add(oNR);
 
@@ -174,9 +182,13 @@ namespace Pelesys.Scheduling.Web.Files
                 DataRow oNR1 = dt.NewRow();
 
                 oNR1["Resource"] = "A320 Simulator";
-                oNR1["ResourceCost"] = "$1200.00";
+                oNR1["1Hours"] = "10";
+                oNR1["1HourRate"] = "200";
+                oNR1["ResourceCost"] = "$2000.00";
                 oNR1["Instructor"] = "Cody B. Pilot";
-                oNR1["InstructorCost"] = "$1454.00";
+                oNR1["2Hours"] = "2";
+                oNR1["2HourRate"] = "160";
+                oNR1["InstructorCost"] = "$320.00";
 
                 dt.Rows.Add(oNR1);
 
@@ -185,9 +197,13 @@ namespace Pelesys.Scheduling.Web.Files
                 DataRow oNR2 = dt.NewRow();
 
                 oNR2["Resource"] = "40 A320 Manul Books";
-                oNR2["ResourceCost"] = "$355.00";
+                oNR2["1Hours"] = "10";
+                oNR2["1HourRate"] = "200";
+                oNR2["ResourceCost"] = "$2000.00";
                 oNR2["Instructor"] = "Flight TKkat";
-                oNR2["InstructorCost"] = "$1650.00";
+                oNR2["2Hours"] = "20";
+                oNR2["2HourRate"] = "100";
+                oNR2["InstructorCost"] = "$2000.00";
 
                 dt.Rows.Add(oNR2);
 
@@ -195,9 +211,13 @@ namespace Pelesys.Scheduling.Web.Files
                 DataRow oNR3 = dt.NewRow();
 
                 oNR3["Resource"] = "Handout Materalsure";
-                oNR3["ResourceCost"] = "$125.00";
+                oNR3["1Hours"] = "5";
+                oNR3["1HourRate"] = "200";
+                oNR3["ResourceCost"] = "$1000.00";
                 oNR3["Instructor"] = "";
-                oNR3["InstructorCost"] = "";
+                oNR3["2Hours"] = "";
+                oNR3["2HourRate"] = "100";
+                oNR3["InstructorCost"] = "0.00";
 
                 dt.Rows.Add(oNR3);
 

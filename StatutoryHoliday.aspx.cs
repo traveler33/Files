@@ -16,13 +16,10 @@ namespace Pelesys.Scheduling.Web.Files
         {
             Master.PageTitle = "Setup Statutory Holiday";
 //            gv.DataSource = Administration.OrganizationLocation.LoadListWhere<Administration.OrganizationLocation>("Where T.OrganizationLocationID <10000");
-            if (!IsPostBack)
-            {
-                GetLocations();
-                gv.DataSource = GetStatHolidays();
-                gv.DataBind();
-                YearDL.Text = "2012";
-            }
+            GetLocations();
+            gv.DataSource = GetStatHolidays();
+            gv.DataBind();
+            YearDL.Text = "2012";
         }
 
         public void GetLocations()
