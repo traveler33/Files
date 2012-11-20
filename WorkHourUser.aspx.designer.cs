@@ -166,6 +166,60 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::System.Web.UI.WebControls.Button bntCancel;
         
         /// <summary>
+        /// hfCurrentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox hfCurrentId;
+        
+        /// <summary>
+        /// hfCurrentDomainID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCurrentDomainID;
+        
+        /// <summary>
+        /// hfInitialTreePath control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfInitialTreePath;
+        
+        /// <summary>
+        /// hfCourseID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCourseID;
+        
+        /// <summary>
+        /// hfIsPublishOrShareCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIsPublishOrShareCourse;
+        
+        /// <summary>
+        /// hfIsShare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIsShare;
+        
+        /// <summary>
         /// ucLocation1 control.
         /// </summary>
         /// <remarks>
