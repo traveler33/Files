@@ -16,6 +16,9 @@ namespace Pelesys.Scheduling.Web.Files
 
             this.gv.DataSource = Administration.User.LoadListWhere<Administration.User>("Where T.UserID <3");
             this.gv.DataBind();
+
+            this.rulelist.NavigateUrl = "~/Files/RuleList.aspx";
+            
         }
     }
 }

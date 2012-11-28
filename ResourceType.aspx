@@ -179,6 +179,8 @@
                                                                            <asp:CheckBox ID="CheckBox2" runat="server" />
                                                                         </HeaderTemplate>
                                                                         <HeaderStyle HorizontalAlign="Center" />
+
+
                                                                     </dx:GridViewCommandColumn>
                                                                     <dx:GridViewDataColumn FieldName="Name" VisibleIndex="1"  Caption="Name" SortOrder="Ascending"   />
 

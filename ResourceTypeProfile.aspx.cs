@@ -649,6 +649,15 @@ namespace Pelesys.Scheduling.Web.Files
             // TabContainer1.ActiveTabIndex = 1;
 
            //
+
+            if (ctrFormDesign1.ActiveTabID != string.Empty)
+            {
+                TabPanel oTP = TabContainer1.FindControl(ctrFormDesign1.ActiveTabID) as TabPanel;
+                if (oTP != null)
+                {
+                    TabContainer1.ActiveTab = oTP;
+                }
+            }
             base.OnPreRender(e);
         }
 

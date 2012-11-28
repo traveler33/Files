@@ -282,6 +282,7 @@ Inherits="Pelesys.Scheduling.Web.Files.EventSchedule" %>
                                       
                                         <asp:Button ID="bntSave" runat="server" Text="Save"  SkinID="bntMiddle" />
                                         <asp:Button ID="bntCancel" runat="server" Text="Cancel" SkinID="bntMiddle" />
+                                     <asp:HyperLink runat="server"  id="rulelist" >HyperLink</asp:HyperLink>
                                     </td>
                                     <td style="width: 150px;">
                                     </td>
