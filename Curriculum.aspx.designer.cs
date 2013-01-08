@@ -85,24 +85,6 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::System.Web.UI.WebControls.TextBox TextBox21;
         
         /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
-        /// <summary>
-        /// Button3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-        
-        /// <summary>
         /// TextBox4 control.
         /// </summary>
         /// <remarks>
@@ -281,6 +263,24 @@ namespace Pelesys.Scheduling.Web.Files {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Pelesys.Web.Controls.SearchTextBox SearchTextBox9;
+        
+        /// <summary>
+        /// txtCreateCertificate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Pelesys.Web.Controls.SearchTextBox txtCreateCertificate;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// TextBox17 control.
@@ -544,49 +544,49 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::AjaxControlToolkit.TabPanel TabPanel1;
         
         /// <summary>
-        /// Label1 control.
+        /// bntGenerate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Button bntGenerate;
         
         /// <summary>
-        /// ddlWeeks control.
+        /// bntAddWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWeeks;
+        protected global::System.Web.UI.WebControls.Button bntAddWeek;
         
         /// <summary>
-        /// Button2 control.
+        /// bntRemoveWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button bntRemoveWeek;
         
         /// <summary>
-        /// Button1233 control.
+        /// bntUP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1233;
+        protected global::System.Web.UI.WebControls.ImageButton bntUP;
         
         /// <summary>
-        /// Label2 control.
+        /// bntDOWN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.ImageButton bntDOWN;
         
         /// <summary>
         /// Button41 control.
@@ -607,6 +607,42 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::System.Web.UI.WebControls.Button Button51;
         
         /// <summary>
+        /// bntReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bntReport;
+        
+        /// <summary>
+        /// bntPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bntPreview;
+        
+        /// <summary>
+        /// bntBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bntBack;
+        
+        /// <summary>
+        /// ASPxTreeView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTreeView.ASPxTreeView ASPxTreeView2;
+        
+        /// <summary>
         /// gvweek1 control.
         /// </summary>
         /// <remarks>
@@ -614,51 +650,6 @@ namespace Pelesys.Scheduling.Web.Files {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvweek1;
-        
-        /// <summary>
-        /// TabPanel4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel4;
-        
-        /// <summary>
-        /// adcEffectiveDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Pelesys.Web.Controls.AdvancedCalendar adcEffectiveDate;
-        
-        /// <summary>
-        /// AdvancedCalendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Pelesys.Web.Controls.AdvancedCalendar AdvancedCalendar1;
-        
-        /// <summary>
-        /// Button17 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button17;
-        
-        /// <summary>
-        /// Button18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button18;
         
         /// <summary>
         /// ASPxScheduler1 control.
@@ -724,13 +715,22 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::Pelesys.Scheduling.Web.Controls.ucResourceSelection ucResourceSelectione1;
         
         /// <summary>
-        /// ucCourseSelection1 control.
+        /// adducInstructorSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Pelesys.Scheduling.Web.Control.ucSelectCourse ucCourseSelection1;
+        protected global::Pelesys.Scheduling.Web.Control.ucInstructors adducInstructorSelection;
+        
+        /// <summary>
+        /// ucCourseSelection2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Pelesys.Scheduling.Web.Control.ucSelectCourse ucCourseSelection2;
         
         /// <summary>
         /// Master property.

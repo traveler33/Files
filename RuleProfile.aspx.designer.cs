@@ -103,6 +103,15 @@ namespace Pelesys.Scheduling.Web.Files {
         protected global::System.Web.UI.WebControls.Button Button33;
         
         /// <summary>
+        /// Button333 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button333;
+        
+        /// <summary>
         /// TextBox3 control.
         /// </summary>
         /// <remarks>

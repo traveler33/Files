@@ -46,15 +46,15 @@
     <div class="searchField">
         <table cellpadding="6" cellspacing="6" border="0" width="1200px" style="height: 40px;"   class="detailEdit" >
             <tr>
-                        <th valign="top" align="left" >
+                        <th valign="top" align="left"  style="width:120px" >
                             Curriculum Name:
                         </th>
-                        <td>
+                        <td align="left">
                             <pel:SearchTextBox ID="txtCurriclumName" runat="server"
                                 Width="180px" />
                         </td>
                    
-                        <th valign="top" align="left" >
+                        <th valign="top" align="left" style="width:120px">
                             Curriculum Code:
                         </th>
                         <td>
@@ -62,7 +62,7 @@
                                 Width="160px" />
                         </td>
                    
-                        <th valign="top" align="left" >
+                        <th valign="top" align="left"  style=" width: 160px;">
                             Location & Organization:
                         </th>
                         <td >

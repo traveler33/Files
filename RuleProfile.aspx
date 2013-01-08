@@ -61,7 +61,7 @@ Inherits="Pelesys.Scheduling.Web.Files.RuleProfile" %>
                                                         <th align="left"  style=" width="150px;">
                                                             Name:<span class="required"></span>
                                                         </th>
-                                                        <td  width="220px;">
+                                                        <td  width="280px;">
                                                             <pel:SearchTextBox ID="SearchTextBox1" runat="server" Objective="userloginname" ValidationGroup="search"
                                                                 Width="220px" />
                                                         </td>
@@ -77,6 +77,13 @@ Inherits="Pelesys.Scheduling.Web.Files.RuleProfile" %>
                                                             </asp:DropDownList>
                                                           
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Is System: </th>
+                                                        <td> <asp:CheckBox runat="server"></asp:CheckBox></td>
+                                                        <td style=" width:40px;"></td>
+                                                        <th> IsActive:</th>
+                                                        <td> <asp:CheckBox runat="server"></asp:CheckBox></td>
                                                     </tr>
                                                       <tr>
                                                         <th align="left"  style=" width="150px;">
@@ -104,10 +111,10 @@ Inherits="Pelesys.Scheduling.Web.Files.RuleProfile" %>
                                                             Description:
                                                         </th>
                                                         <th>
-                                                            IsActive:
+                                                               
                                                         </th>
                                                         <td>
-                                                         <asp:CheckBox runat="server"></asp:CheckBox>
+                                                         
                                                         </td>
                                                      </tr>
 
@@ -115,7 +122,7 @@ Inherits="Pelesys.Scheduling.Web.Files.RuleProfile" %>
                                                     
                                                  
                                                         <td  colspan="5">
-                                                            <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Width="790px" Height="60px"></asp:TextBox>
+                                                            <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Width="840px" Height="60px"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                       <tr>
@@ -131,7 +138,7 @@ Inherits="Pelesys.Scheduling.Web.Files.RuleProfile" %>
                                                             Process Order:
                                                         </th>
                                                         <td>
-                                                            <asp:TextBox runat="server" width="50px"></asp:TextBox>
+                                                            <asp:TextBox runat="server" width="50px"></asp:TextBox>   <asp:Button ID="Button333" runat="server" Text="View Order" SkinID="bntMiddle" />
                                                         </td>
                                                      </tr>
 
@@ -139,20 +146,22 @@ Inherits="Pelesys.Scheduling.Web.Files.RuleProfile" %>
                                                     
                                                  
                                                         <td  colspan="5">
-                                                            <asp:TextBox ID="TextBox3" runat="server" TextMode="MultiLine" Width="790px" Height="60px"></asp:TextBox>
+                                                            <asp:TextBox ID="TextBox3" runat="server" TextMode="MultiLine" Width="840px" Height="60px"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                       <tr>
-                                                        <th valign="top" align="left"   colspan="5" >
+                                                        <th valign="top" align="left"   colspan="3" >
                                                           Message:
                                                         </th>
+                                                        <th></th>
+                                                        <td></td>
                                                      </tr>
 
                                                     <tr>
                                                     
                                                  
                                                         <td  colspan="5">
-                                                            <asp:TextBox ID="TextBox4" runat="server" TextMode="MultiLine" Width="790px" Height="60px"></asp:TextBox>
+                                                            <asp:TextBox ID="TextBox4" runat="server" TextMode="MultiLine" Width="840px" Height="60px"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                 </table>

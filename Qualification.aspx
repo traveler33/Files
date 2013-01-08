@@ -78,11 +78,53 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div id="ResourceTypeTab" class="TabPanelControl" style="margin: 4px; padding: 1px;
-        width: 99%; overflow: hidden;">
-        <table cellpadding="6" cellspacing="6" border="0" width="100%">
+        width: 99%; overflow: hidden;  height:650px">
+        <table cellpadding="6" cellspacing="6" border="0" width="100%"
+            <tr>
+                <th>
+                    <table>
+                            <tr>
+                                <th>
+                                   <h4> <asp:label runat="server" text="Search for quatified instructors "></asp:label></h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                   <asp:Button ID="Button41" runat="server" Text="+" CssClass="ShortButton" />
+                                   <asp:Button ID="Button51" runat="server" Text="-" CssClass="ShortButton" /> 
+                                   <asp:label runat="server" text="Add or remove instructor"></asp:label>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <table>
+                                            <tr>
+                                                <th>
+                                                      <asp:TextBox ID="txtName" runat="server"  
+                                                        Height="20px" Width="280px"></asp:TextBox>
+                                                    <asp:TextBoxWatermarkExtender ID="NameWatermark" runat="server" WatermarkText=" Instructor or currlulum name..."
+                                                        TargetControlID="txtName" WatermarkCssClass="SearchWaterMark">
+                                                    </asp:TextBoxWatermarkExtender>
+                                                        <asp:Button ID="bntSearch" runat="server" Text="Search" SkinID="bntMiddle" />
+                                                            <asp:Button ID="bntDisplay" runat="server" Text="Display All" SkinID="bntMiddle" />
+                                                            <asp:Button ID="bntImport" runat="server" Text="Import Data" SkinID="bntMiddle" />
+                                                </th>
+                                                 <th></th>
+                                                  <th></th>
+                                            </tr>
+                                    
+                                    </table>
+                                
+                                </th>
+                            
+                            </tr>
+                    </table>
+                
+                </th>
+            </tr>
             <tr>
                 <td>
-                    <div style="height: 380px; width: 900px; border: 1px lightgray solid; overflow: auto;">
+                    <div style="height: 444px; width: 1460px; border: 1px lightgray solid; overflow: auto;">
                         <div class="resultGridView">
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="griview"
                                 Height="0px" HeaderStyle-CssClass="HeaderStyle-CssClass" RowStyle-CssClass="RowStyle-CssClass"

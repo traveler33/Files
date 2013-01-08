@@ -5,6 +5,7 @@
 <%@ Register Src="../Control/ucResourceSelection.ascx" TagName="ucResourceSelection"
     TagPrefix="uc2" %>
 <%@ Register Src="../Control/ucSelectCourse.ascx" TagName="uccourseSelection" TagPrefix="uc3" %>
+<%@ Register Src="../Control/ucInstructors.ascx" TagName="ucInstructorSelection" TagPrefix="uc4" %>
 <%@ Register Assembly="DevExpress.Web.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     Namespace="DevExpress.Web.ASPxTreeView" TagPrefix="dx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -108,6 +109,58 @@
 
        
     </script>
+  <script type="text/javascript">
+	    $(document).ready(function () {
+	       
+	        $("#Course").fancybox({
+	            'autoScale': false,
+                'autoDimensions': false,
+                'width': 1000,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'padding': 6,
+
+                'titlePosition': 'inside',
+                'titleShow': true,
+
+
+	        });
+
+	     
+	    });
+
+
+
+
+    function TriggerCourse() 
+    {  
+
+        $('#Course').trigger('click');
+      //  window.setTimeout('parent.$.fancybox.close();', 2500);  StudentList
+       
+       
+    }
+
+     function IsEditMode(IsShow) {
+
+            if (IsShow) {
+                $('#EditMode').hide();
+                $('#EditGrid').hide();
+                $('#PreviewMode').show();
+                $('#CalendarView').show();
+
+            }
+            else {
+                $('#EditMode').show();
+                 $('#CalendarView').hide();
+                $('#PreviewMode').hide();
+                 $('#EditGrid').show();
+            }
+
+
+        }
+    </script>
+
 </asp:content>
 <asp:content id="Content2" contentplaceholderid="Content" runat="server">
     <div id="Div1" class="TitlePanel" style="border-top: solid 2px white; margin: 4px;
@@ -161,17 +214,7 @@
                                                             <asp:TextBox ID="TextBox21" runat="server" Width="350px" BackColor="#efefef"></asp:TextBox>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <th valign="top" align="left">
-                                                            Location:
-                                                        </th>
-                                                        <td style="font-size: 8px; font-weight: normal;">
-                                                            <asp:TextBox ID="TextBox1" runat="server" Width="320px"></asp:TextBox>
-                                                            <asp:Button ID="Button3" runat="server" Text="..." CssClass="ShortButton" />
-                                                        </td>
-                                                        <td style="width: 20px;">
-                                                        </td>
-                                                    </tr>
+                                                  
                                                     <tr>
                                                         <th valign="top" align="left">
                                                             Objective:
@@ -184,7 +227,7 @@
                                                   
                                                       <tr>
                                                         <th valign="top" align="left">
-                                                            Schdeule Time
+                                                            Schdeule 
                                                         </th>
                                                         <td valign="bottom">
                                                         </td>
@@ -275,7 +318,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th valign="top" align="left">
-                                                            Sum of Cost Per Student:
+                                                            Per Student Fee:
                                                         </th>
                                                         <td style="font-size: 8px; font-weight: normal;">
                                                             <asp:TextBox ID="TextBox6" runat="server" Width="350px" BackColor="#efefef"></asp:TextBox>
@@ -328,12 +371,21 @@
                                                                 Width="350px" />
                                                         </td>
                                                     </tr>
+                                                     <tr>
+                                                        <th align="left" style="width: 150px; font-size: 11px; font-weight: normal;">
+                                                            Create Certificationr:
+                                                        </th>
+                                                        <td>
+                                                            <pel:SearchTextBox ID="txtCreateCertificate" runat="server" Objective="userloginname" ValidationGroup="search"
+                                                                Width="274px" />    <asp:Button ID="Button1" runat="server" Text="Browse..." SkinID="bntMiddle" />
+                                                        </td>
+                                                    </tr>
                                                        <tr>
                                                         <th valign="top" align="left" style="width: 150px; font-size: 11px; font-weight: normal;">
                                                             Note:
                                                         </th>
                                                         <td>
-                                                            <asp:TextBox ID="TextBox17" runat="server" TextMode="MultiLine" Width="350px" Height="60px"></asp:TextBox>&nbsp;
+                                                            <asp:TextBox ID="TextBox17" runat="server" TextMode="MultiLine" Width="350px" Height="50px"></asp:TextBox>&nbsp;
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -348,12 +400,12 @@
                                 <div style="visibility: visible; margin: 4px; height: 370px; overflow: auto;" class="detailEdit">
                                     <table border="0" cellpadding="2" cellspacing="2">
                                         <tr>
-                                            <td style="width: 320px;" valign="top">
+                                            <td style="width: 350px;" valign="top">
                                                 <table border="0" cellpadding="6" cellspacing="6">
                                                     <tr>
                                                         <th>
                                                             <asp:Label runat="server" Text="Course:"></asp:Label>
-                                                            <asp:Button ID="Button15" runat="server" Text="+" CssClass="ShortButton"  OnClientClick="TriggerCourseList(); return false;" />
+                                                            <asp:Button ID="Button15" runat="server" Text="+" CssClass="ShortButton"  OnClientClick="TriggerCourse()  ; return false;" />
                                                             <asp:Button ID="Button16" runat="server" Text="-" CssClass="ShortButton" />
                                                             <asp:ImageButton ID="ImageButton2"  ImageUrl="~/Images/moveup.gif" runat="server"   />
                                                              <asp:ImageButton ID="ImageButton3"   ImageUrl="~/Images/movedown.gif" runat="server"  />
@@ -460,9 +512,9 @@
                                                                             Time Span:
                                                                         </th>
                                                                         <th>
-                                                                            <asp:TextBox ID="TextBox12" runat="server" Width="140px"> </asp:TextBox>
+                                                                            <asp:TextBox ID="TextBox12" runat="server" Width="110px"> </asp:TextBox>
                                                                             &nbsp; Time Unit:
-                                                                            <asp:DropDownList ID="ddlTimeUnit1" runat="server" Width="80px">
+                                                                            <asp:DropDownList ID="ddlTimeUnit1" runat="server" Width="100px">
                                                                             </asp:DropDownList>
                                                                         </th>
                                                                     </tr>
@@ -485,7 +537,7 @@
                                                                                 <asp:Label ID="Label5" runat="server" Text="Description:" />
                                                                             </th>
                                                                             <td class="editFieldControl" colspan="4">
-                                                                                <asp:TextBox ID="TextBox22" runat="server" TextMode="MultiLine" Rows="8" onkeydown="CheckLength(this,3000,72)"
+                                                                                <asp:TextBox ID="TextBox22" runat="server" TextMode="MultiLine" Rows="5" onkeydown="CheckLength(this,3000,72)"
                                                                                     onkeyup="CheckLength(this,3000,72)" Width="300px" MaxLength="3000"></asp:TextBox>
                                                                                 <%--<pel:ValidateTextBox ID="txtDescription" runat="server" Required="false" TextMode="MultiLine" />--%>
                                                                             </td>
@@ -495,9 +547,9 @@
                                                                 </tr> </table>
                                                             </div>
                                                         </contenttemplate>
-                        </asp:tabpanel>
-                        <asp:tabpanel headertext="Resource requirement" visible="true" runat="server" id="TabPanel5">
-                            <contenttemplate>
+                                                    </asp:tabpanel>
+                                                    <asp:tabpanel headertext="Resource requirement" visible="true" runat="server" id="TabPanel5">
+                                                        <contenttemplate>
                                                             <div style="visibility: visible; margin: 4px; padding-top: 8px;" class="detailEdit">
                                                                 <table border="0" cellpadding="6" cellspacing="8" style="width: 960px; height: 100%;">
                                                                     <tr>
@@ -553,16 +605,16 @@
                                                                 </table>
                                                             </div>
                                                         </contenttemplate>
-                        </asp:tabpanel>
-                        <asp:tabpanel headertext="Instructor Qalification" visible="true" runat="server"
-                            id="TabPanel6">
-                            <contenttemplate>
+                                                    </asp:tabpanel>
+                                                    <asp:tabpanel headertext="Instructor Qalification" visible="true" runat="server"
+                                                        id="TabPanel6">
+                                                        <contenttemplate>
                                                             <div style="visibility: visible; margin: 4px; padding-top: 5px;" class="detailEdit">
                                                                 <table border="0" cellpadding="6" cellspacing="8" style="width: 960px; height: 100%;">
                                                                     <tr>
                                                                         <th>
                                                                           
-                                                                            <asp:Button ID="Button4" runat="server" Text="+" CssClass="ShortButton" />
+                                                                            <asp:Button ID="Button4" runat="server" Text="+" CssClass="ShortButton" onclientclick=" TriggerCourseList() ; return false; " />
                                                                             <asp:Button ID="Button5" runat="server" Text="-" CssClass="ShortButton" />
                                                                         </th>
                                                                     </tr>
@@ -595,11 +647,14 @@
                                                                                                     </dx:ASPxLabel>
                                                                                                 </DataItemTemplate>
                                                                                             </dx:GridViewDataHyperLinkColumn>
-                                                                                            <dx:GridViewDataHyperLinkColumn Caption="Qualification" VisibleIndex="4">
-                                                                                                <DataItemTemplate>
-                                                                                                    <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text=" 5">
+                                                                                            <dx:GridViewDataHyperLinkColumn Caption="Qualification" VisibleIndex="4"   Width="120px" >
+                                                                                                <DataItemTemplate   >
+                                                                                                    <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text=" " BackColor="Green" Width="20px" Height="20px"    >
                                                                                                     </dx:ASPxLabel>
+                                                                                                  
                                                                                                 </DataItemTemplate>
+                                                                                                 <HeaderStyle HorizontalAlign="Center" />
+                                                                                                   <CellStyle HorizontalAlign="Center" />
                                                                                             </dx:GridViewDataHyperLinkColumn>
                                                                                             <dx:GridViewDataImageColumn Caption="Detail" VisibleIndex="5">
                                                                                                 <DataItemTemplate>
@@ -626,12 +681,12 @@
                                                                 </table>
                                                             </div>
                                                         </contenttemplate>
-                        </asp:tabpanel>
-                    </asp:tabcontainer>
-                </td>
-            </tr>
-        </table>
-    </div>
+                                                    </asp:tabpanel>
+                                                </asp:tabcontainer>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </ContentTemplate>
                         </asp:TabPanel>
                         <asp:tabpanel headertext="Module Plan" visible="true" runat="server" id="TabPanel1">
@@ -640,32 +695,56 @@
                                     <table border="0" cellpadding="6" cellspacing="6" width="100%">
                                         <tr>
                                             <td>
-                                                <table cellpadding="6" cellspacing="6" border="0" width="1280px" style="height: 280px">
+                                                <table cellpadding="6" cellspacing="6" border="0" width="1380px" style="height: 310px"   >
                                                     <tr>
-                                                        <th style="width: 150px;">
-                                                            <asp:Label ID="Label1" runat="server" Text="Weeks:"></asp:Label>
+                                                        <th style="width: 250px;">
+                                                           <asp:Button ID="bntGenerate" runat="server" Text="Generate" SkinID="bntMiddle" />
+                                                             <asp:Button ID="bntAddWeek" runat="server" Text="+" CssClass="ShortButton" />
+                                                            <asp:Button ID="bntRemoveWeek" runat="server" Text="-" CssClass="ShortButton" />
+                                                            <asp:ImageButton ID="bntUP"  ImageUrl="~/Images/moveup.gif" runat="server"   />
+                                                             <asp:ImageButton ID="bntDOWN"   ImageUrl="~/Images/movedown.gif" runat="server"  />
                                                         </th>
-                                                        <td>
-                                                            <asp:DropDownList ID="ddlWeeks" runat="server" Width="300px">
-                                                            </asp:DropDownList>
-                                                            <asp:Button ID="Button2" runat="server" Text="Generating" SkinID="bntMiddle" />
-                                                            <asp:Button ID="Button1233" runat="server" Text="Report" SkinID="bntMiddle" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th style="width: 150px;">
-                                                            <asp:Label ID="Label2" runat="server" Text="Course Plan:"></asp:Label>
-                                                        </th>
-                                                        <td align="left">
+                                                        <th>
+                                                            <div id="EditMode">
                                                             <asp:Button ID="Button41" runat="server" Text="+" CssClass="ShortButton" />
-                                                            <asp:Button ID="Button51" runat="server" Text="-" CssClass="ShortButton" />
-                                                        </td>
+                                                            <asp:Button ID="Button51" runat="server" Text="-" CssClass="ShortButton" /> 
+                                                           
+                                                            <asp:Label runat="server" Text="Add or remove module"></asp:Label>
+                                                            <asp:Button ID="bntReport" runat="server" Text="Report" SkinID="bntMiddle" />
+                                                            <asp:Button ID="bntPreview" runat="server" Text="Preview Weekly Plan" cssclass="lButton"  onClientClick="IsEditMode(true); return false;"  />
+                                                            </div>
+                                                            <div id="PreviewMode" style=" display:none;">
+                                                                 <asp:Button ID="bntBack" runat="server" Text="Back to Edit View" cssclass="lButton" onClientClick="IsEditMode(false); return false;" />
+                                                            </div>
+                                                        </th>
                                                     </tr>
                                                     <tr>
-                                                        <td style="width: 150px;">
+                                                        <td style="width: 250px;">
+                                                             <dx:ASPxTreeView ID="ASPxTreeView2" runat="server" ClientInstanceName="ASPxTreeView1"
+                                                                    AllowSelectNode="true" EnableClientSideAPI="True" EnableCallBacks="True"  Border-BorderColor="lightgray"
+                                                                     Border-BorderStyle="Solid" Border-BorderWidth="1px"
+                                                                     Width = "240px"  Height = "311px"   ShowTreeLines = "false" ShowExpandButtons = "true" 
+                                                                        Font-Size="10px" 
+                                                                      >
+                                                                  
+                                                                    <Nodes>
+                                                                        <dx:TreeViewNode Name="rw1" Text="Week 1" >
+                                                                           </dx:TreeViewNode> 
+                                                                         <dx:TreeViewNode Name="rw2" Text="Week 2" >
+                                                                            </dx:TreeViewNode> 
+                                                                          <dx:TreeViewNode Name="rw3" Text="Week 3" >
+                                                                             </dx:TreeViewNode> 
+                                                                           <dx:TreeViewNode Name="rw4" Text="Week 4" >
+                                                                              </dx:TreeViewNode> 
+                                                                            <dx:TreeViewNode Name="rw5" Text="Week 5" >
+                                                                               </dx:TreeViewNode> 
+                                                                             <dx:TreeViewNode Name="rw6" Text="Week 6" >
+                                                                                </dx:TreeViewNode> 
+                                                                    </Nodes>
+                                                                </dx:ASPxTreeView>
                                                         </td>
                                                         <td valign="top">
-                                                            <div style="border: 1px solid lightgray; width: 1110px; height: 274px; overflow: auto;">
+                                                            <div id="EditGrid" style="border: 1px solid lightgray; width: 1110px; height: 304px; overflow: auto;">
                                                                 <dx:ASPxGridView ID="gvweek1" ClientInstanceName="grid" runat="server" KeyFieldName="SettingID"
                                                                     Border-BorderColor="LightGray" Border-BorderStyle="Solid" Border-BorderWidth="1"
                                                                     Font-Names="Verdana" Font-Size="10px" ForeColor="#342F2F" AutoGenerateColumns="False"
@@ -673,6 +752,12 @@
                                                                     Theme="Office2003Blue" EnableRowsCache="True" Width="100%" DataSourceForceStandardPaging="False"
                                                                     SettingsPager-AlwaysShowPager="True" SettingsPager-Position="Bottom">
                                                                     <Columns>
+                                                                     <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="30px">
+                                                                            <HeaderTemplate>
+                                                                                <asp:CheckBox ID="CheckBox2" runat="server" />
+                                                                            </HeaderTemplate>
+                                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                                        </dx:GridViewCommandColumn>
                                                                         <dx:GridViewDataTextColumn Caption="Day" VisibleIndex="1" Width="60px">
                                                                             <DataItemTemplate>
                                                                                 <asp:Label ID="lblDay" runat="server" Text="1"></asp:Label>
@@ -681,29 +766,15 @@
                                                                             </CellStyle>
                                                                             <HeaderStyle HorizontalAlign="Center" />
                                                                         </dx:GridViewDataTextColumn>
-                                                                        <dx:GridViewDataComboBoxColumn Caption="Course" VisibleIndex="2">
+                                                                        <dx:GridViewDataComboBoxColumn Caption="Module" VisibleIndex="2">
                                                                             <DataItemTemplate>
                                                                                 <asp:DropDownList ID="ddlcourses"   Width="350px"  runat="server">
                                                                                 </asp:DropDownList>
                                                                                
                                                                             </DataItemTemplate>
                                                                         </dx:GridViewDataComboBoxColumn>
-                                                                        <dx:GridViewDataTextColumn Caption="Note" VisibleIndex="2" Width="180px">
-                                                                            <DataItemTemplate>
-                                                                                <asp:TextBox ID="TextBox2" runat="server" Width="350px"></asp:TextBox>
-                                                                            </DataItemTemplate>
-                                                                            <CellStyle HorizontalAlign="Center">
-                                                                            </CellStyle>
-                                                                            <HeaderStyle HorizontalAlign="Center" />
-                                                                        </dx:GridViewDataTextColumn>
-                                                                        <dx:GridViewDataTextColumn Caption="Duration" VisibleIndex="3" Width="80px">
-                                                                            <DataItemTemplate>
-                                                                                <asp:Label ID="lblDuration" runat="server" Text="1"></asp:Label>
-                                                                            </DataItemTemplate>
-                                                                            <CellStyle HorizontalAlign="Center">
-                                                                            </CellStyle>
-                                                                            <HeaderStyle HorizontalAlign="Center" />
-                                                                        </dx:GridViewDataTextColumn>
+                                                                       
+                                                                       
                                                                         <dx:GridViewDataTimeEditColumn Caption="From" VisibleIndex="5">
                                                                             <DataItemTemplate>
                                                                                 <dx:ASPxTimeEdit ID="ASPxTimeEdit1" runat="server" Width="100px">
@@ -716,6 +787,22 @@
                                                                                 </dx:ASPxTimeEdit>
                                                                             </DataItemTemplate>
                                                                         </dx:GridViewDataTimeEditColumn>
+                                                                         <dx:GridViewDataTextColumn Caption="Duration" VisibleIndex="6" Width="80px">
+                                                                            <DataItemTemplate>
+                                                                                <asp:Label ID="lblDuration" runat="server" Text="1"></asp:Label>
+                                                                            </DataItemTemplate>
+                                                                            <CellStyle HorizontalAlign="Center">
+                                                                            </CellStyle>
+                                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                                        </dx:GridViewDataTextColumn>
+                                                                         <dx:GridViewDataTextColumn Caption="Note" VisibleIndex="7" Width="180px">
+                                                                            <DataItemTemplate>
+                                                                                <asp:TextBox ID="TextBox2" runat="server" Width="300px"></asp:TextBox>
+                                                                            </DataItemTemplate>
+                                                                            <CellStyle HorizontalAlign="Center">
+                                                                            </CellStyle>
+                                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                                        </dx:GridViewDataTextColumn>
                                                                     </Columns>
                                                                     <Settings ShowGroupPanel="False" />
                                                                     <SettingsBehavior AllowFocusedRow="true" />
@@ -728,6 +815,47 @@
                                                                     </SettingsPager>
                                                                 </dx:ASPxGridView>
                                                             </div>
+                                                             <div id="CalendarView" style=" display:none; border: 1px solid lightgray; width: 1210px; height: 314px; overflow: auto;">
+                                                               <dx:ASPxScheduler ID="ASPxScheduler1" runat="server" Width="100%" ActiveViewType="WorkWeek"   
+                                                               OptionsBehavior-ShowViewNavigator ="false"  
+                                                                OptionsBehavior-ShowTimeMarker = "false"
+                                                                 Theme="Office2010Black"      Start="2010-07-13" ClientInstanceName="ASPxClientScheduler1">
+                                                                <Views>
+                                                                    <DayView Enabled="False">
+                                                                        <TimeRulers>
+                                                                            <dx:TimeRuler />
+                                                                        </TimeRulers>
+                                                                    </DayView>
+                                                                    <WorkWeekView    WorkTime-Start="07:00:00" WorkTime-End="20:00:00"  ShowWorkTimeOnly="true" ShowDayHeaders="true" NavigationButtonVisibility="Never"  ShowFullWeek="true" >
+                                                                        <TimeRulers>
+                                                                        <dx:TimeRuler />
+                                                                        </TimeRulers>
+                                                                          <Templates>
+                                                                            <DateHeaderTemplate>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td align="left">
+                                                                                            <b>
+                                                                                               
+                                                                                        </td>
+                                                                                        <td style="width: 100%; text-align: center;">
+                                                                                            <%# System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Container.Interval.Start.DayOfWeek) %>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </DateHeaderTemplate>
+                                                                        </Templates>
+                                                                    </WorkWeekView>
+                                                                    <WeekView Enabled="False" />
+                                                                    <MonthView Enabled="False" />
+                                                                    <TimelineView Enabled="False" />
+                                                                </Views>
+                                                                <OptionsBehavior ShowViewSelector="False" />
+                                                                <Storage EnableReminders="false" />
+                                                            </dx:ASPxScheduler>
+                                                                  
+                                                                    
+                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -737,82 +865,7 @@
                                 </div>
                             </contenttemplate>
                         </asp:tabpanel>
-                        <asp:tabpanel headertext="Schedule" visible="true" runat="server" id="TabPanel4">
-                            <contenttemplate>
-                                <div style="visibility: visible; margin: 4px;" class="detailEdit">
-                                    <table border="0" cellpadding="2" cellspacing="2" width="100%">
-                                        <tr>
-                                            <th>
-                                                <table border="0" cellpadding="2" cellspacing="2" width="900px">
-                                                    <tr>
-                                                        <td style="width: 60px;">
-                                                            From:
-                                                        </td>
-                                                        <td align="left" style="width: 180px;">
-                                                            <pel:AdvancedCalendar ID="adcEffectiveDate" runat="server" IsRequired="false" Width="140px" />
-                                                        </td>
-                                                        <td style="width: 20px;">
-                                                        </td>
-                                                        <td style="width: 60px;">
-                                                            To:
-                                                        </td>
-                                                        <td align="left" style="width: 180px;">
-                                                            <pel:AdvancedCalendar ID="AdvancedCalendar1" runat="server" IsRequired="false" Width="140px" />
-                                                        </td>
-                                                        <td style="width: 180px;">
-                                                            <asp:Button ID="Button17" runat="server" Text="Generating" SkinID="bntMiddle" />
-                                                            <asp:Button ID="Button18" runat="server" Text="Report" SkinID="bntMiddle" />
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <div id="scheduler_here" style='width: 99%; height: 330px; border: 1px solid lightgray;
-                                                    overflow: auto;'>
-                                                    <dx:ASPxScheduler ID="ASPxScheduler1" runat="server" Width="99%" ActiveViewType="WorkWeek"
-                                                        GroupType="Resource" Start="2012-07-13" Theme="Office2003Blue">
-                                                        <Views>
-                                                            <DayView ResourcesPerPage="2">
-                                                                <TimeRulers>
-                                                                    <dx:TimeRuler />
-                                                                </TimeRulers>
-                                                                <DayViewStyles ScrollAreaHeight="240px" />
-                                                            </DayView>
-                                                            <WorkWeekView ResourcesPerPage="2">
-                                                                <TimeRulers>
-                                                                    <dx:TimeRuler />
-                                                                </TimeRulers>
-                                                                <WorkWeekViewStyles ScrollAreaHeight="240px">
-                                                                </WorkWeekViewStyles>
-                                                            </WorkWeekView>
-                                                            <WeekView ResourcesPerPage="2">
-                                                                <WeekViewStyles>
-                                                                    <DateCellBody Height="150px" />
-                                                                </WeekViewStyles>
-                                                            </WeekView>
-                                                            <MonthView ResourcesPerPage="2">
-                                                                <MonthViewStyles>
-                                                                    <DateCellBody Height="100px" />
-                                                                </MonthViewStyles>
-                                                            </MonthView>
-                                                            <TimelineView ResourcesPerPage="2">
-                                                                <TimelineViewStyles>
-                                                                    <TimelineCellBody Height="250px" />
-                                                                </TimelineViewStyles>
-                                                            </TimelineView>
-                                                        </Views>
-                                                        <Storage EnableReminders="false">
-                                                        </Storage>
-                                                    </dx:ASPxScheduler>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </contenttemplate>
-                        </asp:tabpanel>
+                 
                     </asp:TabContainer>
                 </td>
             </tr>
@@ -858,16 +911,27 @@
     <asp:hiddenfield id="hidLabelList" runat="server" />
     <div style="display: none;">
         <div id="ResourceTypeProfile" style="width: 770px; height: 520px;">
-            <uc2:ucResourceSelection ID="ucResourceSelectione1" runat="server" />
+            
+              <uc2:ucResourceSelection ID="ucResourceSelectione1" runat="server" />
         </div>
     </div>
 
-    <a id="CourseSelection" href="#CourseList" title="Add Course" style="display: none;">
+    <a id="CourseSelection" href="#CourseList" title="Add Instructors" style="display: none;">
         Inline</a>
     
     <div style="display: none;">
-        <div id="CourseList" style="width: 770px; height: 520px;">
-            <uc3:uccourseSelection ID="ucCourseSelection1" runat="server" />
+        <div id="CourseList" style="width: 710px; height: 580px;">
+           <uc4:ucInstructorSelection ID="adducInstructorSelection" runat="server" />
+        </div>
+    </div>
+
+
+     <a id="Course" href="#GetCourse" title="Add Course" style="display: none;">
+        Inline</a>
+    
+    <div style="display: none;">
+        <div id="GetCourse" style="width: 770px; height: 520px;">
+         <uc3:uccourseSelection ID="ucCourseSelection2" runat="server" />
         </div>
     </div>
 
